@@ -101,6 +101,39 @@
 
     <!-- -------------- navbar close-------- -->
 
+    <!-- Main Content -->
+    <main>
+        <!-- div for Creating a new post section -->
+        <div class="container">
+            <form id="formCreatePost">
+                
+                <div class="container">
+                    <label for="textBoxPost" class="form-label">New Post: </label>
+                    <textarea id="textBoxPost" class="form-control" cols="40" rows="4"></textarea>
+                    <!-- Button to submit form -->
+                    <button id="btnSubmit" type="submit" class="btn btn-primary">Post</button>
+                </div>
+
+            </form>
+        </div>
+
+        <!-- div for Displaying Posts -->
+        <div class="container">
+            <!-- div for Sort dropdown -->
+            <div>
+                <label for="dropdownSortPosts" class="form-label">Sort By:</label>
+                <select id="dropdownSortPosts" class="form-select">
+                    <option value="new">New</option>
+                    <option value="popular">Popular</option>
+                    <option value="username">User</option>
+                </select>
+            </div>
+
+            <div id="displayPosts">
+                
+            </div>
+        </div>
+    </main>
 
     <!-- Page-specific code -->
     <script src="/scripts/posts.js"></script>

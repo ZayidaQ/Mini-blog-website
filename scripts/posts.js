@@ -1,5 +1,4 @@
 /* Posts Page JavaScript */
-// import {logout} from "./auth.js"
 
 "use strict";
 
