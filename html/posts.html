@@ -1,12 +1,18 @@
-<!-- POSTS page -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <title>post</title>
+
+    <!-- Required meta tags -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap CSS -->
+    <!-- Font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Bootstrap CSS v5.3.0 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -16,30 +22,96 @@
     <!-- Global CSS (CSS rules you want applied to all pages) -->
     <link rel="stylesheet" href="/css/global.css">
 
-    <!-- Page-specific CSS -->
+    <!-- Link to custom style sheet -->
     <link rel="stylesheet" href="/css/posts.css">
 
-    <title>/POSTS</title>
-
-    <!-- Run BEFORE page is finished loading (before window.onload): -->
+    <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="/scripts/auth.js"></script>
     <script>
         if (isLoggedIn() === false) window.location.replace("/");
     </script>
 </head>
+
 <body>
 
-    <header>
-        <h1>POSTS PAGE</h1>
-    </header>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="index.html" class="logo"><img src="images/logo.png"></a>
 
-    <main>
-        <button id="btnLogOut" type="button" class="btn btn-primary">Log Out</button>
-    </main>
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass" style="color: #616161;"></i>
+                <input type="text" placeholder="Search">
+            </div>
 
-    <footer></footer>
+        </div>
+        <div class="navbar-center">
+            <ul>
+                <li><a href="#" class="active-link"><i class="fas fa-home" style="color: #616161;"></i> <span>Home</span></a></li>
+                <li><a href="#"><i class="fas fa-user" style="color: #616161"></i> <span>My Network</span></a></li>
+                <li><a href="#"><i class="fas fa-comment-alt" style="color: #616161"></i> <span>Messaging</span></a></li>
+                <li><a href="#"><i class="fas fa-bell" style="color: #616161"></i> <span>Notifications</span></a></li>
+            </ul>
+        </div>
+        <div class="navbar-right">
+            <div class="online">
+                <img src="images/user-1.png" class="nav-profile-img" onclick="toggleMenu()">
+            </div>
+        </div>
+        <!-- --------------- profile-drop-down-menu---------- -->
+        <div class="profile-menu-wrap" id="profileMenu">
+            <div class="profile-menu">
+                <div class="user-info">
+                    <img src="images/user-1.png">
+                    <div>
+                        <a href="profile.html">
+                            <h3>Kaye Poblete</h3>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <a href="#" class="profile-menu-link">
+                    <img src="images/feedback.png">
+                    <p>Give Feedback</p>
+                    <span>></span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src="images/setting.png">
+                    <p>Settings & Privacy</p>
+                    <span>></span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src="images/help.png">
+                    <p>Help & Support</p>
+                    <span>></span>
+                </a>
+                <a href="#" class="profile-menu-link">
+                    <img src="images/display.png">
+                    <p>Display & Accessiblity</p>
+                    <span>></span>
+                </a>
+                <a href="#" id="btnLogOut" class="profile-menu-link">
+                    <img src="images/logout.png">
+                    <p>Logout</p>
+                    <span>></span>
+                </a>
+            </div>
+        </div>
+
+    </nav>
+
+    <!-- -------------- navbar close-------- -->
+
 
     <!-- Page-specific code -->
     <script src="/scripts/posts.js"></script>
+
+    <!-- Font awesome js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
