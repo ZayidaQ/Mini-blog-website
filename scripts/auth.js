@@ -78,6 +78,6 @@ function logout () {
             // error with the fetch request above.
 
             window.localStorage.removeItem("login-data");  // remove login data from LocalStorage
-            window.location.assign("/html/starterIndex.html");  // redirect back to landing page
+            window.location.assign("/html/index.html");  // redirect back to landing page
         });
 }
