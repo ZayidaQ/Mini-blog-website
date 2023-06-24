@@ -4,7 +4,6 @@
 
 // global variables
 const btnLogOut = document.querySelector("#btnLogOut");
-// const baseURL = "https://microbloglite.herokuapp.com/";
 const formCreatePost = document.querySelector("#formCreatePost");
 const bearerToken = getLoginData();
 const displayPosts = document.querySelector("#displayPosts");
@@ -14,10 +13,10 @@ window.onload = () => {
   displayAllPosts();
 }
 
-// logout button event listener
+// logout button
 btnLogOut.onclick = function(event) {
-    event.preventDefault;
-    logout();
+  event.preventDefault;
+  logout();
 }
 
 // when button is clicked, create a post using value from form
@@ -50,7 +49,6 @@ async function createPost() {
 
 // function for displaying all posts
 async function displayAllPosts() {
-  let display = "";
   try{
     const response = await fetch(`${apiBaseURL}/api/posts`,
     {
@@ -61,7 +59,18 @@ async function displayAllPosts() {
     const data = await response.json();
     let newData = Object.values(data);
     newData.forEach(post => {
-      displayPosts.innerHTML += `<p>${post.text}</p>`
+      let newDate = new Date(post.createdAt);
+      displayPosts.innerHTML += 
+      `
+      <div class="card mb-2" style="width: 40rem;">
+        <div class="card-body">
+          <h5 class="card-title">@${post.username}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">${newDate.toDateString()}</h6>
+          <p>${post.text}</p>
+          <p>Likes: ${post.likes.length}</p>
+        </div>
+      </div>
+      `
     }) 
     console.log(Object.values(data));
   }
@@ -73,19 +82,19 @@ async function displayAllPosts() {
 
 
 // this code is for the side menu to work properly
-const profileMenu = document.getElementById("profileMenu");
-const sideActivity = document.getElementById("sidebarActivity");
-const moreLink = document.getElementById("showMoreLink");
+// const profileMenu = document.getElementById("profileMenu");
+// const sideActivity = document.getElementById("sidebarActivity");
+// const moreLink = document.getElementById("showMoreLink");
 
-function toggleMenu() {
-  profileMenu.classList.toggle("open-menu");
-}
+// function toggleMenu() {
+//   profileMenu.classList.toggle("open-menu");
+// }
 
-function toggleActivity() {
-  sideActivity.classList.toggle("open-activity");
+// function toggleActivity() {
+//   sideActivity.classList.toggle("open-activity");
 
-  moreLink.innerHTML = sideActivity.classList.contains("open-activity") ? "Show less <b>-</b>" : "Show more <b>+</b>";
-}
+//   moreLink.innerHTML = sideActivity.classList.contains("open-activity") ? "Show less <b>-</b>" : "Show more <b>+</b>";
+// }
 
-profileMenu.addEventListener("click", toggleMenu);
-moreLink.addEventListener("click", toggleActivity);
+// profileMenu.addEventListener("click", toggleMenu);
+// moreLink.addEventListener("click", toggleActivity);
