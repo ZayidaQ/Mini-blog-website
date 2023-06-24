@@ -7,9 +7,11 @@ const btnLogOut = document.querySelector("#btnLogOut");
 const formCreatePost = document.querySelector("#formCreatePost");
 const bearerToken = getLoginData();
 const displayPosts = document.querySelector("#displayPosts");
+const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
 
 // when page loads
 window.onload = () => {
+  dropdownSortPosts.onchange = onDropdownSort;
   displayAllPosts();
 }
 
@@ -48,6 +50,9 @@ async function createPost() {
   displayAllPosts();
 }
 
+//function to sort onchange of dropdown select
+
+
 // function for displaying all posts
 async function displayAllPosts() {
   try{
@@ -66,7 +71,7 @@ async function displayAllPosts() {
       <div class="card mb-2" style="width: 40rem;">
         <div class="card-body">
           <h5 class="card-title">@${post.username}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">${newDate.toDateString()}</h6>
+          <h6 class="card-subtitle mb-2 text-body-secondary">${newDate.toLocaleString()}</h6>
           <p>${post.text}</p>
           <p>Likes: ${post.likes.length}</p>
         </div>
