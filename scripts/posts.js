@@ -27,16 +27,16 @@ formCreatePost.onsubmit = function(event) {
 
 // function for creating a new post
 async function createPost() {
-  const newPost = document.querySelector("#textBoxPost");
+  const newPost = document.querySelector("#textBoxPost").value;
   try {
     const response = await fetch(`${apiBaseURL}/api/posts`,
     {
       method: "POST",
       body: JSON.stringify({
-        "text": newPost.value
+        "text": newPost
       }),
       headers: {
-        "Content-type": "application/json; charset=UTF-8",
+        "Content-type": "application/json",
         "Authorization": "Bearer " + bearerToken.token},
     });
     const data = await response.json();
@@ -45,6 +45,7 @@ async function createPost() {
   catch(error) {
     console.log(error); //test
   }
+  displayAllPosts();
 }
 
 // function for displaying all posts
