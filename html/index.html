@@ -1,29 +1,18 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Login to the Microblog Network!</title>
+    <title>Sign in & Sign up Form</title>
 
     <!-- Required meta tags -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Font awesome link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <!-- Bootstrap CSS v5.3.0 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-
-    <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="/css/global.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 
     <!-- Link to custom style sheet -->
-    <link rel="stylesheet" href="../css/landing.css">
+    <link rel="stylesheet" href="../css/landing.css" />
 
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="/scripts/auth.js"></script>
@@ -34,95 +23,123 @@
 </head>
 
 <body>
-    <main>
-        <div class="container">
-            <div class="forms-container">
-                <div class="signin-signup">
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <!-- sign in form -->
+                <form id="loginForm" action="#" class="sign-in-form">
+                    <h2 class="title">Sign in</h2>
 
-                    <form id="loginForm" action="" class="sign-in-form">
-                        <h2 class="title">Sign in</h2>
+                    <!-- input field -->
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="loginUsername" placeholder="Username" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="loginPassword" placeholder="Password" />
+                    </div>
 
-                        <div class="input-field">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="loginUsername" placeholder="Username">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="loginPassword" placeholder="Password">
-                        </div>
+                    <!-- sign in button -->
+                    <input id="loginButton" type="submit" value="Login" class="btn solid" />
 
-                        <input id="loginButton" type="submit" value="Login" class="btn solid">
+                    <p class="social-text">Or Sign in with social platforms</p>
+                    <div class="social-media">
 
-                        <p class="social-text">Or sign in with social platforms</p>
-                        <div class="social-media">
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-google"></i>
-                            </a>
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                    </form>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
 
-                    <form id="signupForm" action="" class="sign-up-form">
-                        <h2 class="title">Sign up</h2>
+                    </div>
+                </form>
+                <!-- sign in form ends -->
 
-                        <div class="input-field">
-                            <i class="fas fa-user"></i>
-                            <input type="text" id="signupUsername" placeholder="Username">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-envelope"></i>
-                            <input type="text" id="inputEmail" placeholder="Email">
-                        </div>
-                        <div class="input-field">
-                            <i class="fas fa-lock"></i>
-                            <input type="password" id="signupPassword" placeholder="Password">
-                        </div>
+                <!-- sign up form -->
+                <form id="signupForm" action="#" class="sign-up-form">
+                    <h2 class="title">Sign up</h2>
 
-                        <input id="signupButton" type="submit" value="Sign up" class="btn solid">
+                    <!-- input field -->
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="signupUsername" placeholder="Username" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="inputEmail" placeholder="Email" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="signupPassword" placeholder="Password" />
+                    </div>
 
-                        <p class="social-text">Or sign up with social platforms</p>
-                        <div class="social-media">
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-google"></i>
-                            </a>
-                            <a href="#" class="social-icons">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                    </form>
-                </div>
+                    <!-- sign up button -->
+                    <input id="signupButton" type="submit" class="btn" value="Sign up" />
+
+                    <p class="social-text">Or Sign up with social platforms</p>
+                    <div class="social-media">
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="#" class="social-icon">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </form>
+                <!-- sign up form ends -->
             </div>
         </div>
 
-        <div class="panels-container"></div>
+        <!-- panels -->
+        <div class="panels-container">
+            <!-- left panel-->
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>New here ?</h3>
+                    <p>
+                        Ready to bee part of the buzz? BEECHAT got you covered!
+                        Join our hive and sign up now!
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>
+                </div>
+                <img src="../img/log.svg" class="image" alt="a girl" />
+            </div>
+
+            <!-- right panel -->
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>Already a member ?</h3>
+                    <p>
+                        Been buzzing around here before? No need to re-introduce yourself! Flutter on over and sign in
+                        to continue the buzz!
+                    </p>
+                    <button class="btn transparent" id="sign-in-btn">
+                        Sign in
+                    </button>
+                </div>
+                <img src="../img/register.svg" class="image" alt="welcome" />
+            </div>
         </div>
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
+    </div>
 
     <!-- Page-specific code -->
-    <script src="/scripts/landing.js"></script>
-
-    <!-- Font awesome js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
+    <script src="../scripts/landing.js"></script>
 </body>
 
 </html>
