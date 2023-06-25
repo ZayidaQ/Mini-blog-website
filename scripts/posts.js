@@ -11,8 +11,9 @@ const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
 
 // when page loads
 window.onload = () => {
+  dropdownSortPosts.value = "new";
+  onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
-  displayAllPosts();
 }
 
 // logout button
@@ -45,16 +46,14 @@ async function createPost() {
     console.log(data);  //test
   }
   catch(error) {
-    console.log(error); //test
+    console.log(error);
   }
   displayAllPosts();
 }
 
 //function to sort onchange of dropdown select
-
-
-// function for displaying all posts
-async function displayAllPosts() {
+async function onDropdownSort() {
+  displayPosts.innerHTML = "";
   try{
     const response = await fetch(`${apiBaseURL}/api/posts`,
     {
@@ -64,28 +63,40 @@ async function displayAllPosts() {
     });
     const data = await response.json();
     let newData = Object.values(data);
+    console.log(newData);
+    if(dropdownSortPosts.value == "new") {
+      newData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+    else if(dropdownSortPosts.value == "popular") {
+      newData.sort((a, b) => b.likes.length - a.likes.length);
+    }
+    else if(dropdownSortPosts.value == "username") {
+      newData.sort((a, b) => b.username.toLowerCase() > a.username.toLowerCase() ? -1 : 1);
+    }
     newData.forEach(post => {
       let newDate = new Date(post.createdAt);
+      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length);
+    })
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
+
+// function for displaying all posts
+function displayAllPosts(_username, _date, _text, _numLikes) {
       displayPosts.innerHTML += 
       `
       <div class="card mb-2" style="width: 40rem;">
         <div class="card-body">
-          <h5 class="card-title">@${post.username}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">${newDate.toLocaleString()}</h6>
-          <p>${post.text}</p>
-          <p>Likes: ${post.likes.length}</p>
+          <h5 class="card-title">@${_username}</h5>
+          <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
+          <p>${_text}</p>
+          <p>Likes: ${_numLikes}</p>
         </div>
       </div>
       `
-    }) 
-    console.log(Object.values(data));
-  }
-  catch(error) {
-    console.log(error); //test
-    displayPosts.innerHTML = error;
-  }
 }
-
 
 // this code is for the side menu to work properly
 const profileMenu = document.getElementById("profileMenu");
