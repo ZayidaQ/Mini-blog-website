@@ -18,15 +18,14 @@ window.onload = () => {
 
 // logout button
 btnLogOut.onclick = function(event) {
-  event.preventDefault;
   logout();
 }
 
 // when button is clicked, create a post using value from form
-formCreatePost.onsubmit = function(event) {
-  event.preventDefault;
+formCreatePost.addEventListener("submit", function(event) {
+  event.preventDefault();
   createPost();
-}
+})
 
 // function for creating a new post
 async function createPost() {
@@ -35,12 +34,13 @@ async function createPost() {
     const response = await fetch(`${apiBaseURL}/api/posts`,
     {
       method: "POST",
-      body: JSON.stringify({
-        "text": newPost
-      }),
       headers: {
         "Content-type": "application/json",
         "Authorization": "Bearer " + bearerToken.token},
+      body: JSON.stringify({
+        "text": newPost
+      }),
+      redirect: 'follow',
     });
     const data = await response.json();
     console.log(data);  //test
@@ -48,7 +48,7 @@ async function createPost() {
   catch(error) {
     console.log(error);
   }
-  displayAllPosts();
+  location.reload();
 }
 
 //function to sort onchange of dropdown select
@@ -63,7 +63,7 @@ async function onDropdownSort() {
     });
     const data = await response.json();
     let newData = Object.values(data);
-    console.log(newData);
+    // console.log(newData); //test
     if(dropdownSortPosts.value == "new") {
       newData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
@@ -92,7 +92,8 @@ function displayAllPosts(_username, _date, _text, _numLikes) {
           <h5 class="card-title">@${_username}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
           <p>${_text}</p>
-          <p>Likes: ${_numLikes}</p>
+          <button class="btn btn-primary">Like</button>
+          <span>${_numLikes}</span>
         </div>
       </div>
       `
