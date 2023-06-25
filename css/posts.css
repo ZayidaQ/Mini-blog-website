@@ -19,7 +19,7 @@ a{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff;
+    background: #ffffff;
     padding: 6px 6%;
     position: sticky;
     top: 0;
@@ -51,7 +51,7 @@ a{
     content: '';
     width: 0;
     height: 2px;
-    background: #045be6;
+    background: #EEBC27;
     position: absolute;
     bottom: -15px;
     transition: width 0.3s;
@@ -75,8 +75,8 @@ a{
 }
 .online::after{
     content: '';
-    width: 7px;
-    height: 7px;
+    width: 13px;
+    height: 13px;
     border: 2px solid #fff;
     border-radius: 50%;
     right: 0px;
@@ -131,7 +131,7 @@ a{
 }
 
 .profile-menu{
-    background: #222;
+    background: #121212;
     color: #fff;
     padding: 20px;
     margin: 10px;
@@ -176,7 +176,7 @@ a{
     margin-right: 15px;
 }
 
-
 #showMoreLink{
     display: none;
 }
+
