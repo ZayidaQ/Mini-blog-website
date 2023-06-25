@@ -75,7 +75,11 @@ async function onDropdownSort() {
     }
     newData.forEach(post => {
       let newDate = new Date(post.createdAt);
-      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length);
+      let isPostOwner = false;
+      if(bearerToken.username == post.username){
+        isPostOwner = true;
+      }
+      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner);
     })
   }
   catch(error) {
@@ -84,7 +88,14 @@ async function onDropdownSort() {
 }
 
 // function for displaying all posts
-function displayAllPosts(_username, _date, _text, _numLikes) {
+function displayAllPosts(_username, _date, _text, _numLikes, _ownPost) {
+      let ownPost = "";
+      if(_ownPost){
+        ownPost = `<button class="btn btn-danger float-end btnDelete"><i class="bi bi-trash-fill"></i></button>`;
+      }
+      else{
+        ownPost = "";
+      }
       displayPosts.innerHTML += 
       `
       <div class="card mb-2" style="width: 40rem;">
@@ -92,8 +103,9 @@ function displayAllPosts(_username, _date, _text, _numLikes) {
           <h5 class="card-title">@${_username}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
           <p>${_text}</p>
-          <button class="btn btn-primary">Like</button>
+          <button class="btn btn-primary btnLike">Like</button>
           <span>${_numLikes}</span>
+          ${ownPost}
         </div>
       </div>
       `
