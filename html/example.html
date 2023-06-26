@@ -1,0 +1,116 @@
+<!-- go back and add alt for all the img -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>post</title>
+
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font awesome link -->
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+
+    <!-- Link to custom style sheet -->
+    <link rel="stylesheet" href="../css/example.css">
+
+    <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
+    <script src="/scripts/auth.js"></script>
+    <script>
+        if (isLoggedIn() === false) window.location.replace("/");
+    </script>
+</head>
+
+<body>
+
+    <nav>
+        <!-- Navigation bar left, which includes logos and couple icons-->
+        <div class="nav-left">
+            <img src="../img/logo.png" alt="" class="logo"> <!-- Change this later-->
+        </div>
+        <!-- Navigation -->
+        <div class="nav-right">
+
+            <div class="search-box">
+                <img src="../img/search.png" alt="">
+                <input type="text" placeholder="Search">
+            </div>
+            <div class="nav-user-icon online">
+                <img src="../img/user-1.JPG" alt="profile picture">
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Left sidebar -->
+        <div class="left-sidebar">
+            <div class="imp-links">
+                <!-- List of links on the left side bar -->
+                <a href="#">
+                    <i class="fas fa-home" style="color: #EEBC27;"></i>
+                    Explore
+                </a>
+                <a href="#">
+                    <i class="fas fa-comments" style="color: #EEBC27;"></i>
+                    Messages
+                </a>
+                <a href="#">
+                    <i class="fas fa-bell" style="color: #EEBC27;"></i>
+                    Notification
+                </a>
+
+                <a href="#">
+                    <i class="fas fa-history" style="color: #EEBC27;"></i>
+                    Recent
+                </a>
+                <a href="#">
+                    <i class="fas fa-user-plus" style="color: #EEBC27;"></i>
+                    Find Friends
+                </a>
+                <a href="#">
+                    see more
+                </a>
+            </div>
+
+            <div class="shortcut-links">
+                <p>Recent interactions</p>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
+            </div>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content"></div>
+
+        <!-- Rigt sidebar -->
+        <div class="right-sidebar">
+            <div class="sidebar-title">
+                <h4>Event Reminders</h4>
+                <a href="#">See All</a>
+            </div>
+
+            <div class="event">
+                <div class="left-event">
+                    <h3>18</h3>
+                    <span>July</span>
+                </div>
+                <div class="right-event">
+                    <h4>Team Meet Up</h4>
+                    <p>Golden Gate Park</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="/scripts/posts.js"></script>
+</body>
+
+</html>
