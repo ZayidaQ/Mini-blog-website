@@ -142,19 +142,19 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
 
 
 // delete post function
-async function deletePost(postID) {
-  try{
-    fetch(`${apiBaseURL}/api/posts/${postID}`, {
-  method: 'DELETE',
-  headers: {
-    'accept': 'application/json',
-    'Authorization': "Bearer " + bearerToken.token},
-  });
-  }
-  catch(error){
-    console.log(error);
-  }
-}
+// async function deletePost(postID) {
+//   try{
+//     fetch(`${apiBaseURL}/api/posts/${postID}`, {
+//   method: 'DELETE',
+//   headers: {
+//     'accept': 'application/json',
+//     'Authorization': "Bearer " + bearerToken.token},
+//   });
+//   }
+//   catch(error){
+//     console.log(error);
+//   }
+// }
 
 // this code is for the side menu to work properly
 const profileMenu = document.getElementById("profileMenu");
