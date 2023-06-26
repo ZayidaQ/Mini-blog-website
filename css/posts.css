@@ -62,7 +62,6 @@ a{
     width: 100%;
 }
 
-
 .nav-profile-img{
     width: 40px;
     border-radius: 50%;
@@ -107,13 +106,6 @@ a{
     border: 0;
 }
 /* ------ navbar end-------------- */
-
-.container{
-    padding: 20px 6%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
 
 /* ------------- profile-drop-down-menu ------------ */
 .profile-menu-wrap{
@@ -180,3 +172,8 @@ a{
     display: none;
 }
 
+.container{
+    padding: 13px 5%;
+    display: flex;
+    justify-content: space-between;
+}
