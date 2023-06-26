@@ -8,6 +8,7 @@ const formCreatePost = document.querySelector("#formCreatePost");
 const bearerToken = getLoginData();
 const displayPosts = document.querySelector("#displayPosts");
 const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
+const allBtnDelete = document.getElementsByClassName("btnDelete");
 
 // when page loads
 window.onload = () => {
@@ -17,15 +18,40 @@ window.onload = () => {
 }
 
 // logout button
-btnLogOut.onclick = function(event) {
+btnLogOut.onclick = () => {
   logout();
 }
 
 // when button is clicked, create a post using value from form
-formCreatePost.addEventListener("submit", function(event) {
+formCreatePost.onsubmit = function(event) {
   event.preventDefault();
   createPost();
-})
+}
+
+// delete post when clicked
+console.log(allBtnDelete);
+// for(let i in allBtnDelete){
+//   allBtnDelete[i].onclick = () => {
+//     const test = document.getElementById("test");
+//     test.innerHTML = allBtnDelete[i].value;
+//     console.log(allBtnDelete[i].value);
+//   }
+// }
+
+// for(let i = 0; i < allBtnDelete.length; i++){
+//   allBtnDelete[i].onclick = () => {
+//     const test = document.getElementById("test");
+//     test.innerHTML = allBtnDelete[i].value;
+//     console.log(allBtnDelete[i].value);
+//   }
+// }
+
+// btnDelete.onclick = function() {
+//   const test = document.getElementById("test");
+//   test.innerHTML = btnDelete.value;
+//   // console.log(btnDelete.value);
+// }
+
 
 // function for creating a new post
 async function createPost() {
@@ -63,7 +89,7 @@ async function onDropdownSort() {
     });
     const data = await response.json();
     let newData = Object.values(data);
-    // console.log(newData); //test
+    console.log(newData); //test
     if(dropdownSortPosts.value == "new") {
       newData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
@@ -74,12 +100,13 @@ async function onDropdownSort() {
       newData.sort((a, b) => b.username.toLowerCase() > a.username.toLowerCase() ? -1 : 1);
     }
     newData.forEach(post => {
-      let newDate = new Date(post.createdAt);
+      let newDate = new Date(post.createdAt); // for date formatting
+      // check if own post to display delete button
       let isPostOwner = false;
       if(bearerToken.username == post.username){
         isPostOwner = true;
       }
-      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner);
+      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
     })
   }
   catch(error) {
@@ -88,17 +115,17 @@ async function onDropdownSort() {
 }
 
 // function for displaying all posts
-function displayAllPosts(_username, _date, _text, _numLikes, _ownPost) {
-      let ownPost = "";
+function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID) {
+      let ownPost = ""; //check if post owner so delete button appears
       if(_ownPost){
-        ownPost = `<button class="btn btn-danger float-end btnDelete"><i class="bi bi-trash-fill"></i></button>`;
+        ownPost = `<button type="button" class="btn btn-danger float-end btnDelete" value="${_valueID}"><i class="bi bi-trash-fill"></i></button>`;
       }
       else{
         ownPost = "";
       }
       displayPosts.innerHTML += 
       `
-      <div class="card mb-2" style="width: 40rem;">
+      <div class="card mb-2">
         <div class="card-body">
           <h5 class="card-title">@${_username}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
@@ -111,9 +138,38 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost) {
       `
 }
 
-// THis is for toggle
-const settingsMenu = document.querySelector(".settings-menu");
+// like post function
 
-function settingsMenuToggle() {
-  settingsMenu.classList.toggle("settings-menu-height");
+
+// delete post function
+async function deletePost(postID) {
+  try{
+    fetch(`${apiBaseURL}/api/posts/${postID}`, {
+  method: 'DELETE',
+  headers: {
+    'accept': 'application/json',
+    'Authorization': "Bearer " + bearerToken.token},
+  });
+  }
+  catch(error){
+    console.log(error);
+  }
 }
+
+// this code is for the side menu to work properly
+const profileMenu = document.getElementById("profileMenu");
+const sideActivity = document.getElementById("sidebarActivity");
+const moreLink = document.getElementById("showMoreLink");
+
+function toggleMenu() {
+  profileMenu.classList.toggle("open-menu");
+}
+
+function toggleActivity() {
+  sideActivity.classList.toggle("open-activity");
+
+  moreLink.innerHTML = sideActivity.classList.contains("open-activity") ? "Show less <b>-</b>" : "Show more <b>+</b>";
+}
+
+profileMenu.addEventListener("click", toggleMenu);
+moreLink.addEventListener("click", toggleActivity);
