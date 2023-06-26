@@ -37,9 +37,55 @@
                 <img src="../img/search.png" alt="">
                 <input type="text" placeholder="Search">
             </div>
-            <div class="nav-user-icon online">
+            <div class="nav-user-icon online" onclick="settingsMenuToggle()">
                 <img src="../img/user-1.JPG" alt="profile picture">
             </div>
+        </div>
+        <!-- Seetings menu -->
+        <div class="settings-menu">
+            <div class="settings-menu-inner">
+                <div class="user-profile">
+                    <img src="../img/user-1.JPG" alt="">
+                    <div>
+                        <p> Zayida </p>
+                        <a href="#">See your profile</a>
+                    </div>
+                </div>
+                <hr>
+                <div class="user-profile">
+                    <i class="fas fa-user-friends" style="color: #EEBC27;"></i>
+                    <div>
+                        <p>Switch Account</p>
+                        <a href="#">Toggle between your alter egos</a>
+                    </div>
+                </div>
+                <hr>
+
+                <!-- Seetings links -->
+                <div class="settings-links">
+                    <i class="fas fa-cog setting-icon settings-icon" style="color: #EEBC27;"></i>
+                    <a href="#">Settings & Privacy <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                </div>
+                <div class="settings-links">
+                    <i class="fas fa-globe setting-icon settings-icon" style="color: #EEBC27;"></i>
+                    <a href="#">Language <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                </div>
+                <div class="settings-links">
+                    <i class="fas fa-question-circle settings-icon" style="color: #EEBC27;"></i>
+                    <a href="#">Help & Support <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                </div>
+                <div class="settings-links">
+                    <i class="fas fa-moon settings-icon" style="color: #EEBC27;"></i>
+                    <a href="#">Display & Accessability <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                </div>
+                <div class="settings-links">
+                    <i class="fas fa-sign-out-alt settings-icon" style="color: #EEBC27;"></i>
+                    <a href="#">Logout <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                </div>
+
+            </div>
+
+
         </div>
     </nav>
 
@@ -60,11 +106,6 @@
                     <i class="fas fa-bell" style="color: #EEBC27;"></i>
                     Notification
                 </a>
-
-                <a href="#">
-                    <i class="fas fa-history" style="color: #EEBC27;"></i>
-                    Recent
-                </a>
                 <a href="#">
                     <i class="fas fa-user-plus" style="color: #EEBC27;"></i>
                     Find Friends
@@ -75,16 +116,81 @@
             </div>
 
             <div class="shortcut-links">
-                <p>Recent interactions</p>
-                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
-                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
-                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
-                <a href="#"><img src="../img/shortcut-1.png" alt=""> Jonathan Carpio</a>
+                <p><i class="fas fa-users" style="color: #EEBC27;"></i> Group-Chats</p>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> Tech-Titans</a>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> Busy Bees 🐝 </a>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> The Ha-Ha Crew</a>
+                <a href="#"><img src="../img/shortcut-1.png" alt=""> Bay-area 🐀</a>
             </div>
         </div>
 
         <!-- Main content -->
-        <div class="main-content"></div>
+        <div class="main-content">
+            <form id="formCreatePost">
+                <div class="create-post">
+                    <div class="create-post-input">
+                        <img src="../img/user-1.JPG">
+                        <textarea id="textBoxPost" rows="2" cols="40" placeholder="Write a post"></textarea>
+                    </div>
+                    <div class="create-post-links">
+                        <li><i class="fas fa-image" style="color: #EEBC27;"></i>Photo</li>
+                        <li><i class="fas fa-film" style="color: #EEBC27;"></i> Video</li>
+                        <li><i class="fas fa-calendar-plus" style="color: #EEBC27;"></i> Event</li>
+                        <li><button id="btnSubmit" type="submit" class="btn btn-primary">Post</button></li>
+                    </div>
+                </div>
+            </form>
+
+            <div class="post">
+                <div class="post-author">
+                    <img src="../img/shortcut-1.png" alt="">
+                    <div>
+                        <h1>Jonathan</h1>
+                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+                        <small>2 hours ago </small>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio numquam, nobis fugiat porro
+                    cumque perspiciatis deserunt officia in quas perferendis possimus unde mollitia earum, eligendi,
+                    voluptate voluptas quidem. Voluptates, corporis?
+                </p>
+
+                <div class="post-stats">
+                    <div>
+                        <i class="fas fa-heart" style="color: #ef4f4f;"></i>
+                        <span class="liked-users"> 89 likes </span>
+                    </div>
+                    <div>
+                        <span>29 comments || 47 Repost </span>
+                    </div>
+                </div>
+
+                <div class="post-activity">
+                    <div>
+                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="far fa-heart"></i></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send</span>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
 
         <!-- Rigt sidebar -->
         <div class="right-sidebar">
@@ -93,24 +199,81 @@
                 <a href="#">See All</a>
             </div>
 
+            <!-- Event list -->
+            <div class="event">
+                <div class="left-event">
+                    <h3>28</h3>
+                    <span>April</span>
+                </div>
+                <div class="right-event">
+                    <h4>Aflak's Birthday! 🎉</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Fisherman's Wharf, SF</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
+            <div class="event">
+                <div class="left-event">
+                    <h3>20</h3>
+                    <span>June</span>
+                </div>
+                <div class="right-event">
+                    <h4>Ari's Birthday! 🎂</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Alcatraz Island, SF</p>
+                    <a href="#">More Info</a>
+                </div>
+            </div>
             <div class="event">
                 <div class="left-event">
                     <h3>18</h3>
                     <span>July</span>
                 </div>
                 <div class="right-event">
-                    <h4>Team Meet Up</h4>
-                    <p>Golden Gate Park</p>
+                    <h4>Team Meet Up 🍹</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Cable Car Museum, SF</p>
                     <a href="#">More Info</a>
                 </div>
             </div>
+
+            <!-- Second section of right sidebar -->
+            <div class="sidebar-title">
+                <h4><i class="fas fa-ad" style="color: #EEBC27;"></i> Advertisement</h4>
+                <a href="#">Close</a>
+            </div>
+            <img src="../img/michael.jpg" alt="pretty girl" class="sidebar-ads">
+
+
+            <div class="sidebar-title">
+                <h4><i class="fas fa-history" style="color: #EEBC27;"></i> Recent Conversation</h4>
+                <a href="#">Hide Chat</a>
+            </div>
+
+            <!-- list of users -->
+            <div class="online-list">
+                <div class="online">
+                    <img src="../img/shortcut-1.png" alt="">
+                </div>
+                <p>Jonathan Carpio</p>
+            </div>
+            <div class="online-list">
+                <div class="online">
+                    <img src="../img/shortcut-1.png" alt="">
+                </div>
+                <p>Jonathan Carpio</p>
+            </div>
+            <div class="online-list">
+                <div class="online">
+                    <img src="../img/shortcut-1.png" alt="">
+                </div>
+                <p>Jonathan Carpio</p>
+            </div>
         </div>
-
-
-
     </div>
 
-    <script src="/scripts/posts.js"></script>
+    <div class="footer">
+        <p> Copyright 2023 - BusyBees </p>
+    </div>
+
+    <script src="../scripts/test.js"></script>
 </body>
 
 </html>

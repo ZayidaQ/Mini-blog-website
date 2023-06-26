@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 body {
@@ -85,36 +86,22 @@ nav {
 
 /* ---------- End of navigation bar ---------- */
 
-/* ---------- Body ---------- */
 .container {
     display: flex;
     justify-content: space-between;
     padding: 13px 5%;
 }
 
+/* ---------- Left-content  ---------- */
+
 .left-sidebar {
     flex-basis: 25%;
     position: sticky;
     top: 70px;
     align-self: flex-start;
-    margin-top: 20px;
 }
 
-.right-sidebar {
-    background: #fff;
-    flex-basis: 25%;
-    position: sticky;
-    top: 70px;
-    align-self: flex-start;
-    padding: 20px;
-    border-radius: 15px;
-    color: #404040;
-}
-
-.main-content {
-    flex-basis: 47%;
-}
-
+/* ----- Top section / some links -----*/
 .imp-links a,
 .shortcut-links a {
     text-decoration: none;
@@ -152,6 +139,7 @@ nav {
     border-bottom: 1px solid #ccc;
 }
 
+/* ----- Groupchats ----- */
 .shortcut-links a img {
     width: 40px;
     border-radius: 4px;
@@ -172,7 +160,19 @@ nav {
     margin-bottom: 18px;
 }
 
-.sidebar-title h4 {
+/* ---------- Right-content ---------- */
+.right-sidebar {
+    background: #fff;
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+    padding: 20px;
+    border-radius: 15px;
+    color: #404040;
+}
+
+.right-sidebar h4 {
     font-weight: 600;
     font-size: 16px;
 }
@@ -184,18 +184,337 @@ nav {
 }
 
 .event {
-    display:flex;
+    display: flex;
     font-size: 14px;
     margin-bottom: 20px;
 }
 
 .left-event {
-    border-radius: 15px;
+    border-radius: 10px;
     height: 65px;
     width: 65px;
     margin-right: 15px;
+    padding-top: 10px;
     text-align: center;
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event p {
+    font-size: 12px;
+}
+
+.event a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #EEBC27;
+}
+
+.left-event span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #EEBC27;
+    color: #fff;
+    font-size: 10px;
+    padding: 4px 0;
+}
+
+/* ----- Side ads ----- */
+.sidebar-ads {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.online-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.online-list p {
+    position: relative;
+}
+
+.online-list p::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #EEBC27;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.online-list p:hover::after {
+    transform: scaleX(1);
+}
+
+
+.online-list .online img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.online-list .online {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.online-list .online::after {
+    top: unset;
+    bottom: 5px;
+}
+
+/* ---------- Main-content ---------- */
+.main-content {
+    flex-basis: 47%;
+}
+
+.create-post {
+    background: #fff;
+}
+
+.create-post-input {
+    padding: 20px 25px 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.create-post-input img {
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.create-post-input textarea {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    resize: none;
+    background: transparent;
+    margin-top: 8px;
+}
+
+::placeholder {
+    font-weight: 500;
+}
+
+.create-post-links {
+    display: flex;
+    align-items: flex-start;
+}
+
+.create-post-links li {
+    list-style: none;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    flex-basis: 25%;
+    height: 40px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.create-post-links li i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.create-post-links li button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.create-post-links li:last-child {
+    background: #F0D18F;
+    color: #fff;
+    border-top: 0;
+    border-right: 0;
+}
+
+.post {
+    background: #fff;
+    padding: 20px 25px 5px;
+    margin: 5px 0 15px;
+}
+
+.post-author {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.post-author img {
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.post-author h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #EEBC27;
+}
+
+.post-author small {
+    display: block;
+    margin-bottom: -2px;
+}
+
+.post p {
+    font-size: 14px;
+    background-color: #FAF6EE;
+    padding: 20px;
+}
+
+.post-stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+.post-stats div {
+    display: flex;
+    align-items: center;
+}
+
+.post-stats i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.liked-users {
+    margin-left: 5px;
+}
+
+
+.post-activity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.post-activity div {
+    display: flex;
+    align-items: center;
+}
+
+.post-activity-user-icon {
+    width: 25px;
+    border-radius: 50%;
+
+}
+
+.post-activity-link i {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* user profile css */
+.user-profile {
+    display: flex;
+    align-items: center;
+
+}
+
+.user-profile img {
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-profile p {
+    margin-bottom: -5px;
+    font-weight: 500;
+    color: #404040;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #121212;
+    padding: 10px 0 20px;
+    font-size: 13px;
+}
+
+.user-profile a {
+    font-size: 12px;
+    color: #1876f2;
+    text-decoration: none;
+}
+
+.user-profile i {
+    font-size: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.settings-menu {
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.4);
+    border-radius: 10px; /* You can change this later if you want! */
+    overflow: hidden;
+    top: 108%;
+    right: 5%;
+    max-height: 0;
+    transition: max-height 0.3s;
+}
+
+.settings-menu-height {
+    max-height: 500px;
+  }
+
+.settings-menu-inner {
+    padding: 20px;
+}
+
+.settings-menu hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 15px 0;
+}
+
+.settings-links {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.settings-links .settings-icon {
+    font-size: 25px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.settings-links a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #404040;
 }
