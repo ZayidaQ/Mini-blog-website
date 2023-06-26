@@ -19,8 +19,8 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 
-    <!-- Global CSS (CSS rules you want applied to all pages) -->
-    <link rel="stylesheet" href="/css/global.css">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
     <!-- Link to custom style sheet -->
     <link rel="stylesheet" href="/css/posts.css">
@@ -39,37 +39,18 @@
             <a href="index.html" class="logo"><img src="images/logo.png"></a>
 
             <div class="search-box">
-                <i class="fas fa-search" style="color: #616161;"></i>
+                <img src="../img/search.png">
                 <input type="text" placeholder="Search">
             </div>
 
         </div>
         <div class="navbar-center">
             <ul>
-                <li>
-                    <a href="#" class="active-link">
-                        <i class="fas fa-home" style="color: #616161;"></i>
-                        <span>Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user" style="color: #616161"></i>
-                        <span>My Network</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-comment-alt" style="color: #616161"></i>
-                        <span>Messaging</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-bell" style="color: #616161"></i>
-                        <span>Notifications</span>
-                    </a>
-                </li>
+                <li><a href="#" class="active-link"><img src="../img/home.png"> <span>Home</span></a></li>
+                <li><a href="#"><img src="../img/network.png"> <span>My Network</span></a></li>
+                <li><a href="#"><img src="../img/jobs.png"> <span>Jobs</span></a></li>
+                <li><a href="#"><img src="../img/message.png"> <span>Messaging</span></a></li>
+                <li><a href="#"><img src="../img/notification.png"> <span>Notifications</span></a></li>
             </ul>
         </div>
 
@@ -127,14 +108,14 @@
         <!-- div for Creating a new post section -->
         <div class="container">
             <form id="formCreatePost">
-                
+
                 <div class="container">
                     <label for="textBoxPost" class="form-label">New Post: </label>
                     <textarea id="textBoxPost" class="form-control" cols="40" rows="4"></textarea>
                     <!-- Button to submit form -->
                     <button id="btnSubmit" type="submit" class="btn btn-primary">Post</button>
                 </div>
-
+                <div id="test"></div> <!-- test -->
             </form>
         </div>
 
@@ -150,8 +131,8 @@
                 </select>
             </div>
             <!-- div where posts are displayed -->
-            <div id="displayPosts">
-                
+            <div class="container" id="displayPosts">
+
             </div>
         </div>
     </main>

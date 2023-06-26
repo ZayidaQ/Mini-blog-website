@@ -1,7 +1,13 @@
 /* Posts Page CSS */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+/* Posts Page CSS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 
 * {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
@@ -35,7 +41,7 @@ nav {
     align-items: center;
 }
 
-/* ---------- user icon image / online ---------- */
+/* -- user icon image / online -- */
 .nav-user-icon img {
     width: 40px;
     border-radius: 50%;
