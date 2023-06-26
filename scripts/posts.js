@@ -9,6 +9,7 @@ const bearerToken = getLoginData();
 const displayPosts = document.querySelector("#displayPosts");
 const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
 const allBtnDelete = document.getElementsByClassName("btnDelete");
+const newPost = document.querySelector("#textBoxPost");
 
 // when page loads
 window.onload = () => {
@@ -25,7 +26,7 @@ btnLogOut.onclick = () => {
 // when button is clicked, create a post using value from form
 formCreatePost.onsubmit = function(event) {
   event.preventDefault();
-  createPost();
+  createPost(newPost.value);
 }
 
 // delete post when clicked
@@ -54,8 +55,8 @@ console.log(allBtnDelete);
 
 
 // function for creating a new post
-async function createPost() {
-  const newPost = document.querySelector("#textBoxPost").value;
+async function createPost(_content) {
+  
   try {
     const response = await fetch(`${apiBaseURL}/api/posts`,
     {
@@ -64,7 +65,7 @@ async function createPost() {
         "Content-type": "application/json",
         "Authorization": "Bearer " + bearerToken.token},
       body: JSON.stringify({
-        "text": newPost
+        "text": _content
       }),
       redirect: 'follow',
     });
@@ -125,7 +126,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
       }
       displayPosts.innerHTML += 
       `
-      <div class="card mb-2">
+      <div class="card mb-2" style="width: 40rem">
         <div class="card-body">
           <h5 class="card-title">@${_username}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
