@@ -1,20 +1,17 @@
-/* Landing Page CSS */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+/* Posts Page CSS */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
-body,
-input {
-  font-family: "Poppins", sans-serif;
+body {
+    background: #efefef;
 }
 
-<<<<<<< Updated upstream
-/* ---------------- form --------------- */
-=======
 /* ---------- Navigation bar ---------- */
 nav {
     display: flex;
@@ -89,391 +86,435 @@ nav {
 
 /* ---------- End of navigation bar ---------- */
 
->>>>>>> Stashed changes
 .container {
-  position: relative;
-  width: 100%;
-  background-color: #fff;
-  min-height: 100vh;
-  overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 5%;
 }
 
-.forms-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+/* ---------- Left-content  ---------- */
+
+.left-sidebar {
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
 }
 
-.signin-signup {
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  left: 75%;
-  width: 50%;
-  transition: 1s 0.7s ease-in-out;
-  display: grid;
-  grid-template-columns: 1fr;
-  z-index: 5;
-}
-
-form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0rem 5rem;
-  transition: all 0.2s 0.7s;
-  overflow: hidden;
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
-
-form.sign-up-form {
-  opacity: 0;
-  z-index: 1;
-}
-
-form.sign-in-form {
-  z-index: 2;
-}
-
-.title {
-  font-size: 2.2rem;
-  color: #444;
-  margin-bottom: 10px;
-}
-
-.input-field {
-  max-width: 380px;
-  width: 100%;
-  background-color: #f0f0f0;
-  margin: 10px 0;
-  height: 55px;
-  border-radius: 55px;
-  display: grid;
-  grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
-  position: relative;
-}
-
-.input-field i {
-  text-align: center;
-  line-height: 55px;
-  color: #EEBC27;
-  transition: 0.5s;
-  font-size: 1.1rem;
-}
-
-.input-field input {
-  background: none;
-  outline: none;
-  border: none;
-  line-height: 1;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #333;
-}
-
-.input-field input::placeholder {
-  color: #aaa;
-  font-weight: 500;
-}
-
-.social-text {
-  padding: 0.7rem 0;
-  font-size: 1rem;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-}
-
-.social-icon {
-  height: 46px;
-  width: 46px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0.45rem;
-  color: #EEBC27;
-  border-radius: 50%;
-  border: 1px solid #EEBC27;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: 0.3s;
-}
-
-.social-icons:hover {
-    color: #333;
-    border-color: #333;
-}
-
-.btn {
-  width: 150px;
-  background-color: #EEBC27;
-  border: none;
-  outline: none;
-  height: 49px;
-  border-radius: 49px;
-  color: #fff;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin: 10px 0;
-  cursor: pointer;
-  transition: 0.5s;
-}
-
-.btn:hover {
-  background-color: #4d84e2;
-}
-.panels-container {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.container:before {
-  content: "";
-  position: absolute;
-  height: 2000px;
-  width: 2000px;
-  top: -10%;
-  right: 48%;
-  transform: translateY(-50%);
-  background-image: linear-gradient(-45deg, #F0D18F 0%, #FAF6EE 100%);
-  transition: 1.8s ease-in-out;
-  border-radius: 50%;
-  z-index: 6;
-}
-
-.image {
-  width: 100%;
-  transition: transform 1.1s ease-in-out;
-  transition-delay: 0.4s;
-}
-
-.panel {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-around;
-  text-align: center;
-  z-index: 6;
-}
-
-.left-panel {
-  pointer-events: all;
-  padding: 3rem 17% 2rem 12%;
-}
-
-.right-panel {
-  pointer-events: none;
-  padding: 3rem 12% 2rem 17%;
-}
-
-.panel .content {
-  color: #fff;
-  transition: transform 0.9s ease-in-out;
-  transition-delay: 0.6s;
-}
-
-.panel h3 {
-  font-weight: 600;
-  line-height: 1;
-  font-size: 1.5rem;
-}
-
-.panel p {
-  font-size: 0.95rem;
-  padding: 0.7rem 0;
-}
-
-.btn.transparent {
-  margin: 0;
-  background: none;
-  border: 2px solid #fff;
-  width: 130px;
-  height: 41px;
-  font-weight: 600;
-  font-size: 0.8rem;
-}
-
-.right-panel .image,
-.right-panel .content {
-  transform: translateX(800px);
-}
-
-/* ANIMATION */
-
-.container.sign-up-mode:before {
-  transform: translate(100%, -50%);
-  right: 52%;
-}
-
-.container.sign-up-mode .left-panel .image,
-.container.sign-up-mode .left-panel .content {
-  transform: translateX(-800px);
-}
-
-.container.sign-up-mode .signin-signup {
-  left: 25%;
-}
-
-.container.sign-up-mode form.sign-up-form {
-  opacity: 1;
-  z-index: 2;
-}
-
-.container.sign-up-mode form.sign-in-form {
-  opacity: 0;
-  z-index: 1;
-}
-
-.container.sign-up-mode .right-panel .image,
-.container.sign-up-mode .right-panel .content {
-  transform: translateX(0%);
-}
-
-.container.sign-up-mode .left-panel {
-  pointer-events: none;
-}
-
-.container.sign-up-mode .right-panel {
-  pointer-events: all;
-}
-
-@media (max-width: 870px) {
-  .container {
-    min-height: 800px;
-    height: 100vh;
-  }
-  .signin-signup {
-    width: 100%;
-    top: 95%;
-    transform: translate(-50%, -100%);
-    transition: 1s 0.8s ease-in-out;
-  }
-
-  .signin-signup,
-  .container.sign-up-mode .signin-signup {
-    left: 50%;
-  }
-
-  .panels-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
-  }
-
-  .panel {
-    flex-direction: row;
-    justify-content: space-around;
+/* ----- Top section / some links -----*/
+.imp-links a,
+.shortcut-links a {
+    text-decoration: none;
+    display: flex;
     align-items: center;
-    padding: 2.5rem 8%;
-    grid-column: 1 / 2;
-  }
-
-  .right-panel {
-    grid-row: 3 / 4;
-  }
-
-  .left-panel {
-    grid-row: 1 / 2;
-  }
-
-  .image {
-    width: 200px;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.6s;
-  }
-
-  .panel .content {
-    padding-right: 15%;
-    transition: transform 0.9s ease-in-out;
-    transition-delay: 0.8s;
-  }
-
-  .panel h3 {
-    font-size: 1.2rem;
-  }
-
-  .panel p {
-    font-size: 0.7rem;
-    padding: 0.5rem 0;
-  }
-
-  .btn.transparent {
-    width: 110px;
-    height: 35px;
-    font-size: 0.7rem;
-  }
-
-  .container:before {
-    width: 1500px;
-    height: 1500px;
-    transform: translateX(-50%);
-    left: 30%;
-    bottom: 68%;
-    right: initial;
-    top: initial;
-    transition: 2s ease-in-out;
-  }
-
-  .container.sign-up-mode:before {
-    transform: translate(-50%, 100%);
-    bottom: 32%;
-    right: initial;
-  }
-
-  .container.sign-up-mode .left-panel .image,
-  .container.sign-up-mode .left-panel .content {
-    transform: translateY(-300px);
-  }
-
-  .container.sign-up-mode .right-panel .image,
-  .container.sign-up-mode .right-panel .content {
-    transform: translateY(0px);
-  }
-
-  .right-panel .image,
-  .right-panel .content {
-    transform: translateY(300px);
-  }
-
-  .container.sign-up-mode .signin-signup {
-    top: 5%;
-    transform: translate(-50%, 0);
-  }
+    margin-bottom: 30px;
+    color: #404040;
+    width: fit-content;
 }
 
-@media (max-width: 570px) {
-  form {
-    padding: 0 1.5rem;
+.shortcut-links a {
+    position: relative;
+}
+
+.shortcut-links a:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 50px;
+    width: 100%;
+    height: 2px;
+    background-color: #EEBC27;
+}
+
+.imp-links a i {
+    font-size: 25px;
+    margin-right: 15px;
+}
+
+.imp-links a:last-child {
+    color: #1876f2
+}
+
+.imp-links {
+    border-bottom: 1px solid #ccc;
+}
+
+/* ----- Groupchats ----- */
+.shortcut-links a img {
+    width: 40px;
+    border-radius: 4px;
+    margin-right: 15px;
+}
+
+.shortcut-links p {
+    margin: 25px 0;
+    color: #EEBC27;
+    font-weight: 500;
+}
+
+/* -- Left side bar -- */
+.sidebar-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+/* ---------- Right-content ---------- */
+.right-sidebar {
+    background: #fff;
+    flex-basis: 25%;
+    position: sticky;
+    top: 70px;
+    align-self: flex-start;
+    padding: 20px;
+    border-radius: 15px;
+    color: #404040;
+}
+
+.right-sidebar h4 {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.sidebar-title a {
+    text-decoration: none;
+    color: #1876f2;
+    font-size: 12px;
+}
+
+.event {
+    display: flex;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.left-event {
+    border-radius: 10px;
+    height: 65px;
+    width: 65px;
+    margin-right: 15px;
+    padding-top: 10px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.event p {
+    font-size: 12px;
+}
+
+.event a {
+    font-size: 12px;
+    text-decoration: none;
+    color: #EEBC27;
+}
+
+.left-event span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #EEBC27;
+    color: #fff;
+    font-size: 10px;
+    padding: 4px 0;
+}
+
+/* ----- Side ads ----- */
+.sidebar-ads {
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.online-list {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.online-list p {
+    position: relative;
+}
+
+.online-list p::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #EEBC27;
+    transform: scaleX(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+.online-list p:hover::after {
+    transform: scaleX(1);
+}
+
+
+.online-list .online img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.online-list .online {
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.online-list .online::after {
+    top: unset;
+    bottom: 5px;
+}
+
+/* ---------- Main-content ---------- */
+.main-content {
+    flex-basis: 47%;
+}
+
+.create-post {
+    background: #fff;
+}
+
+.create-post-input {
+    padding: 20px 25px 10px;
+    display: flex;
+    align-items: flex-start;
+}
+
+.create-post-input img {
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.create-post-input textarea {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    resize: none;
+    background: transparent;
+    margin-top: 8px;
+}
+
+::placeholder {
+    font-weight: 500;
+}
+
+.create-post-links {
+    display: flex;
+    align-items: flex-start;
+}
+
+.create-post-links li {
+    list-style: none;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    flex-basis: 25%;
+    height: 40px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.create-post-links li i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.create-post-links li button {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+.create-post-links li:last-child {
+    background: #F0D18F;
+    color: #fff;
+    border-top: 0;
+    border-right: 0;
+}
+
+.post {
+    background: #fff;
+    padding: 20px 25px 5px;
+    margin: 5px 0 15px;
+}
+
+.post-author {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.post-author img {
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.post-author h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #EEBC27;
+}
+
+.post-author small {
+    display: block;
+    margin-bottom: -2px;
+}
+
+.post p {
+    font-size: 14px;
+    background-color: #FAF6EE;
+    padding: 20px;
+}
+
+.post-stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+}
+
+.post-stats div {
+    display: flex;
+    align-items: center;
+}
+
+.post-stats i {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.liked-users {
+    margin-left: 5px;
+}
+
+
+.post-activity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.post-activity div {
+    display: flex;
+    align-items: center;
+}
+
+.post-activity-user-icon {
+    width: 25px;
+    border-radius: 50%;
+
+}
+
+.post-activity-link i {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* user profile css */
+.user-profile {
+    display: flex;
+    align-items: center;
+
+}
+
+.user-profile img {
+    width: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-profile p {
+    margin-bottom: -5px;
+    font-weight: 500;
+    color: #404040;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #121212;
+    padding: 10px 0 20px;
+    font-size: 13px;
+}
+
+.user-profile a {
+    font-size: 12px;
+    color: #1876f2;
+    text-decoration: none;
+}
+
+.user-profile i {
+    font-size: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.settings-menu {
+    position: absolute;
+    width: 90%;
+    max-width: 350px;
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.4);
+    border-radius: 10px; /* You can change this later if you want! */
+    overflow: hidden;
+    top: 108%;
+    right: 5%;
+    max-height: 0;
+    transition: max-height 0.3s;
+}
+
+.settings-menu-height {
+    max-height: 500px;
   }
 
-  .image {
-    display: none;
-  }
-  .panel .content {
-    padding: 0.5rem 1rem;
-  }
-  .container {
-    padding: 1.5rem;
-  }
+.settings-menu-inner {
+    padding: 20px;
+}
 
-  .container:before {
-    bottom: 72%;
-    left: 50%;
-  }
+.settings-menu hr {
+    border: 0;
+    height: 1px;
+    background: #ccc;
+    margin: 15px 0;
+}
 
-  .container.sign-up-mode:before {
-    bottom: 28%;
-    left: 50%;
-  }
+.settings-links {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.settings-links .settings-icon {
+    font-size: 25px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.settings-links a {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #404040;
 }
