@@ -9,8 +9,8 @@ const bearerToken = getLoginData();
 const displayPosts = document.querySelector("#displayPosts");
 const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
 const newPost = document.querySelector("#textBoxPost");
-let allBtnDelete = document.getElementsByClassName("btnDelete");
-let allBtnLike = document.getElementsByClassName("btnLike");
+const allBtnDelete = document.getElementsByClassName("btnDelete");
+const allBtnLike = document.getElementsByClassName("btnLike");
 
 // when page loads
 window.onload = () => {
@@ -92,11 +92,11 @@ async function onDropdownSort() {
   console.log(allBtnLike.length);
 
   // like a post when clicked
-  // for(let i = 0; i < allBtnDelete.length; i++){
-  //   allBtnLike[i].onclick = () => {
-  //     likePost(allBtnLike[i].id);
-  //   }
-  // }
+  for(let i = 0; i < allBtnDelete.length; i++){
+    allBtnLike[i].onclick = () => {
+      likePost(allBtnLike[i].id);
+    }
+  }
 
   // delete post when clicked
   for(let i = 0; i < allBtnDelete.length; i++){
@@ -127,7 +127,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
           <h5 class="card-title">@${_username}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
           <p>${_text}</p>
-          <button class="btn btn-primary btnLike" id="${_valueID}" value"">Like</button>
+          <button class="btn btn-primary btnLike" id="${_valueID}" value="">Like</button>
           <span>${_numLikes}</span>
           ${ownPost}
         </div>
@@ -148,6 +148,23 @@ async function likePost(_postID) {
         'postId': _postID
       })
     });
+    console.log("Post liked."); //test
+    // location.reload();
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
+
+// unlike post function
+async function unlikePost(_likeID) {
+  try {
+    fetch(`${apiBaseURL}/api/likes/${_likeID}`, {
+    method: 'DELETE',
+    headers: {
+      'accept': 'application/json',
+      'Authorization': "Bearer " + bearerToken.token}
+    });
   }
   catch(error) {
     console.log(error);
@@ -163,7 +180,7 @@ async function deletePost(_postID) {
     'accept': 'application/json',
     'Authorization': "Bearer " + bearerToken.token},
   });
-  console.log("Post deleted.");
+  console.log("Post deleted."); //test
   }
   catch(error){
     console.log(error);
