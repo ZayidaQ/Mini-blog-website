@@ -59,7 +59,7 @@ async function createPost(_content) {
 async function onDropdownSort() {
   displayPosts.innerHTML = "";
   try{
-    const response = await fetch(`${apiBaseURL}/api/posts`,
+    const response = await fetch(`${apiBaseURL}/api/posts?limit=1000&offset=0`,
     {
       method: 'GET',
       headers: {
