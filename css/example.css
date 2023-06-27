@@ -24,10 +24,6 @@
     --bg-color: #000;
 }
 
-
-
-
-
 body {
     background: var(--body-color);
     transition: background 0.3s;
@@ -111,6 +107,11 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 13px 5%;
+}
+
+.display-container {
+    display: flex;
+    flex-direction: column;
 }
 
 /* ---------- Left-content  ---------- */

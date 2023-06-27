@@ -159,16 +159,52 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
       }
       displayPosts.innerHTML += 
       `
-      <div class="card mb-2" style="width: 40rem">
-        <div class="card-body">
-          <h5 class="card-title">@${_username}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
-          <p>${_text}</p>
-          <button class="btn btn-primary btnLike" id="${_valueID}">Like</button>
-          <span>${_numLikes}</span>
-          ${ownPost}
-        </div>
-      </div>
+      <div class="post">
+                <div class="post-author">
+                    <img src="../img/shortcut-1.png" alt="">
+                    <div>
+                        <h1>${_username}</h1>
+                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+                        <small>${_date} </small>
+                    </div>
+                </div>
+                <p>
+                ${_text}
+                </p>
+
+                <div class="post-stats">
+                    <div>
+                        <i class="fas fa-heart" style="color: #ef4f4f;"></i>
+                        <span class="liked-users"> ${_numLikes} likes </span>
+                    </div>
+                    <div>
+                        <span>29 comments || 47 Repost </span>
+                    </div>
+                </div>
+
+                <div class="post-activity">
+                    <div>
+                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="far fa-heart" id="${_valueID}"></i></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-share" ${ownPost}></i>
+                        <span>Share</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send</span>
+                    </div>
+
+                </div>
+            </div>
       `
 }
 
@@ -231,19 +267,34 @@ async function deletePost(_postID) {
 }
 
 // this code is for the side menu to work properly
-const profileMenu = document.getElementById("profileMenu");
-const sideActivity = document.getElementById("sidebarActivity");
-const moreLink = document.getElementById("showMoreLink");
+const settingsMenu = document.querySelector(".settings-menu");
+const darkBtn = document.getElementById("dark-btn")
 
-function toggleMenu() {
-  profileMenu.classList.toggle("open-menu");
+function settingsMenuToggle() {
+  settingsMenu.classList.toggle("settings-menu-height");
 }
 
-function toggleActivity() {
-  sideActivity.classList.toggle("open-activity");
+darkBtn.onclick = function () {
+  darkBtn.classList.toggle("dark-btn-on");
+  document.body.classList.toggle("dark-theme");
 
-  moreLink.innerHTML = sideActivity.classList.contains("open-activity") ? "Show less <b>-</b>" : "Show more <b>+</b>";
+  if (localStorage.getItem("theme") == "light"){
+    localStorage.setItem("theme", "dark");
+  }
+  else {
+    localStorage.setItem("theme", "light");
+  }
 }
 
-profileMenu.addEventListener("click", toggleMenu);
-moreLink.addEventListener("click", toggleActivity);
+// local storage
+if (localStorage.getItem("theme") == "light") {
+  darkBtn.classList.remove("dark-btn-on");
+  document.body.classList.remove("dark-theme");
+}
+else if (localStorage.getItem("theme") == "dark") {
+  darkBtn.classList.add("dark-btn-on");
+  document.body.classList.add("dark-theme");
+}
+else {
+  localStorage.setItem("theme", "light");
+}
