@@ -28,7 +28,7 @@
     <nav>
         <!-- Navigation bar left, which includes logos and couple icons-->
         <div class="nav-left">
-            <img src="../img/logo.png" alt="" class="logo"> <!-- Change this later-->
+            <a href="posts.html" class="logo"><img src="../img/logo.png" alt="" class="logo"></a> <!-- Change this later-->
         </div>
         <!-- Navigation -->
         <div class="nav-right">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="settings-links">
                     <i class="fas fa-sign-out-alt settings-icon" style="color: #EEBC27;"></i>
-                    <a href="#">Logout <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                    <a href="#" id="btnLogOut">Logout <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
                 </div>
 
             </div>
@@ -133,7 +133,7 @@
         <!-- Main content -->
         <div class="main-content">
             <form id="formCreatePost">
-                <div class="create-post">
+                <div class="create-post" id="formCreatePost">
                     <div class="create-post-input">
                         <img src="../img/user-1.JPG">
                         <textarea id="textBoxPost" rows="2" cols="40" placeholder="Write a post"></textarea>
@@ -147,54 +147,8 @@
                 </div>
             </form>
 
-            <div class="post">
-                <div class="post-author">
-                    <img src="../img/shortcut-1.png" alt="">
-                    <div>
-                        <h1>Jonathan</h1>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
-                        <small>2 hours ago </small>
-                    </div>
-                </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio numquam, nobis fugiat porro
-                    cumque perspiciatis deserunt officia in quas perferendis possimus unde mollitia earum, eligendi,
-                    voluptate voluptas quidem. Voluptates, corporis?
-                </p>
+            <div class="container" id="displayPosts">
 
-                <div class="post-stats">
-                    <div>
-                        <i class="fas fa-heart" style="color: #ef4f4f;"></i>
-                        <span class="liked-users"> 89 likes </span>
-                    </div>
-                    <div>
-                        <span>29 comments || 47 Repost </span>
-                    </div>
-                </div>
-
-                <div class="post-activity">
-                    <div>
-                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
-                    </div>
-                    <div class="post-activity-link">
-                        <i class="far fa-heart"></i></i>
-                        <span>Like</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <i class="fas fa-comment"></i>
-                        <span>Comment</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <i class="fas fa-share"></i>
-                        <span>Share</span>
-                    </div>
-                    <div class="post-activity-link">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>Send</span>
-                    </div>
-
-
-
-                </div>
             </div>
         </div>
 
@@ -279,7 +233,8 @@
         <p> Copyright 2023 - BusyBees </p>
     </div>
 
-    <script src="../scripts/test.js"></script>
+    
+    <script src="../scripts/posts.js"></script>
 </body>
 
 </html>
