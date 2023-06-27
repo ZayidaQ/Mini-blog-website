@@ -7,6 +7,12 @@ const signInBtn = document.querySelector("#sign-in-btn");
 const signUpBtn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 
+const signupUsername = document.querySelector("#signupUsername");
+const signupFullName = document.querySelector("#signupFullName");
+const signupPassword = document.querySelector("#signupPassword");
+const signupForm = document.querySelector("#signupForm");
+
+
 signUpBtn.addEventListener('click', () => {
     container.classList.add("sign-up-mode");
 });
@@ -33,3 +39,41 @@ loginForm.onsubmit = function (event) {
     // Time to actually process the login using the function from auth.js!
     login(loginData);
 };
+
+signupForm.onsubmit = function(event) {
+    event.preventDefault();
+
+    // call signup function and input appropriate field values
+    signup(signupUsername.value, signupFullName.value, signupPassword.value);
+    
+    
+
+    // const signUpData = {
+    //     username: signupForm.signupUsername.value,
+    //     password: signupPassword.signupPassword.value,
+    // }
+    // // signupForm.signupButton.disabled = true;
+
+    // login(signUpData);
+}
+
+async function signup(_username, _fullName, _password) {
+    try {
+        fetch(`${apiBaseURL}/api/users`, {
+        method: 'POST',
+        headers: {
+            'accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'username': _username,
+            'fullName': _fullName,
+            'password': _password
+        })
+        })
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+
