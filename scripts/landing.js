@@ -45,16 +45,8 @@ signupForm.onsubmit = function(event) {
 
     // call signup function and input appropriate field values
     signup(signupUsername.value, signupFullName.value, signupPassword.value);
-    
-    
-
-    // const signUpData = {
-    //     username: signupForm.signupUsername.value,
-    //     password: signupPassword.signupPassword.value,
-    // }
-    // // signupForm.signupButton.disabled = true;
-
-    // login(signUpData);
+    alert("Sign up successful!");
+    location.reload();    
 }
 
 async function signup(_username, _fullName, _password) {
