@@ -8,12 +8,15 @@ const formCreatePost = document.querySelector("#formCreatePost");
 const bearerToken = getLoginData();
 const displayPosts = document.querySelector("#displayPosts");
 const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
+const newPost = document.querySelector("#textBoxPost");
 const allBtnDelete = document.getElementsByClassName("btnDelete");
+const allBtnLike = document.getElementsByClassName("btnLike");
 
 // when page loads
 window.onload = () => {
   dropdownSortPosts.value = "new";
-  onDropdownSort();
+  checkLikes(bearerToken.username);
+  onDropdownSort(); //change to check post like status onload
   dropdownSortPosts.onchange = onDropdownSort;
 }
 
@@ -25,37 +28,12 @@ btnLogOut.onclick = () => {
 // when button is clicked, create a post using value from form
 formCreatePost.onsubmit = function(event) {
   event.preventDefault();
-  createPost();
+  createPost(newPost.value);
 }
-
-// delete post when clicked
-console.log(allBtnDelete);
-// for(let i in allBtnDelete){
-//   allBtnDelete[i].onclick = () => {
-//     const test = document.getElementById("test");
-//     test.innerHTML = allBtnDelete[i].value;
-//     console.log(allBtnDelete[i].value);
-//   }
-// }
-
-// for(let i = 0; i < allBtnDelete.length; i++){
-//   allBtnDelete[i].onclick = () => {
-//     const test = document.getElementById("test");
-//     test.innerHTML = allBtnDelete[i].value;
-//     console.log(allBtnDelete[i].value);
-//   }
-// }
-
-// btnDelete.onclick = function() {
-//   const test = document.getElementById("test");
-//   test.innerHTML = btnDelete.value;
-//   // console.log(btnDelete.value);
-// }
 
 
 // function for creating a new post
-async function createPost() {
-  const newPost = document.querySelector("#textBoxPost").value;
+async function createPost(_content) {
   try {
     const response = await fetch(`${apiBaseURL}/api/posts`,
     {
@@ -64,7 +42,7 @@ async function createPost() {
         "Content-type": "application/json",
         "Authorization": "Bearer " + bearerToken.token},
       body: JSON.stringify({
-        "text": newPost
+        "text": _content
       }),
       redirect: 'follow',
     });
@@ -77,7 +55,7 @@ async function createPost() {
   location.reload();
 }
 
-//function to sort onchange of dropdown select
+//function to sort posts onchange of dropdown select
 async function onDropdownSort() {
   displayPosts.innerHTML = "";
   try{
@@ -106,8 +84,64 @@ async function onDropdownSort() {
       if(bearerToken.username == post.username){
         isPostOwner = true;
       }
+      //
       displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
     })
+  }
+  catch(error) {
+    console.log(error);
+  }
+  console.log(allBtnDelete.length); //remove later
+  console.log(allBtnLike.length); //remove later
+
+  // like a post when clicked
+  // for(let i = 0; i < allBtnDelete.length; i++){
+  //   allBtnLike[i].onclick = () => {
+  //     if(likePost == true){
+  //       allBtnLike[i].textContent = "Like";
+  //       console.log("unliked");
+  //     }
+  //     else{
+  //       likePost(allBtnLike[i].id);
+  //       allBtnLike[i].textContent = "Dislike"
+  //       console.log("liked");
+  //     }
+  //   }
+  // }
+
+  // delete post when clicked
+  for(let i = 0; i < allBtnDelete.length; i++){
+    allBtnDelete[i].onclick = () => {
+      let text = "Are you sure you want to delete your post?"
+      if(confirm(text) == true){
+        deletePost(allBtnDelete[i].id);
+        alert("Post deleted succesfully.");
+        location.reload();
+      }
+    }
+  }
+}
+
+//check post if all liked posts
+async function checkLikes(_username) {
+  let likeList = [];
+  try {
+    const response = await fetch(`${apiBaseURL}/api/posts`,
+    {
+      method: 'GET',
+      headers: {
+        "Authorization": "Bearer " + bearerToken.token},
+    });
+    const data = response.json();
+    let newData = Object.values(data);
+    newData.forEach(post => {
+      post.likes.forEach(like => {
+        if(like.username == _username){
+          likeList.push(post);
+        }
+      })
+    })
+    localStorage.setItem("myLikes", likeList);
   }
   catch(error) {
     console.log(error);
@@ -118,38 +152,114 @@ async function onDropdownSort() {
 function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID) {
       let ownPost = ""; //check if post owner so delete button appears
       if(_ownPost){
-        ownPost = `<button type="button" class="btn btn-danger float-end btnDelete" value="${_valueID}"><i class="bi bi-trash-fill"></i></button>`;
+        ownPost = `<button type="button" class="btn btn-danger float-end btnDelete" id="${_valueID}"><i class="bi bi-trash-fill"></i></button>`;
       }
       else{
         ownPost = "";
       }
       displayPosts.innerHTML += 
       `
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title">@${_username}</h5>
-          <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
-          <p>${_text}</p>
-          <button class="btn btn-primary btnLike">Like</button>
-          <span>${_numLikes}</span>
-          ${ownPost}
-        </div>
-      </div>
+      <div class="post">
+                <div class="post-author">
+                    <img src="../img/shortcut-1.png" alt="">
+                    <div>
+                        <h1>${_username}</h1>
+                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
+                        <small>${_date} </small>
+                    </div>
+                </div>
+                <p>
+                ${_text}
+                </p>
+
+                <div class="post-stats">
+                    <div>
+                        <i class="fas fa-heart" style="color: #ef4f4f;"></i>
+                        <span class="liked-users"> ${_numLikes} likes </span>
+                    </div>
+                    <div>
+                        <span>29 comments || 47 Repost </span>
+                    </div>
+                </div>
+
+                <div class="post-activity">
+                    <div>
+                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="far fa-heart" id="${_valueID}"></i></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-share" ${ownPost}></i>
+                        <span>Share</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send</span>
+                    </div>
+
+                </div>
+            </div>
       `
 }
 
 // like post function
+async function likePost(_postID) {
+  try {
+    const response = await fetch(`${apiBaseURL}/api/likes`, {
+      method: 'POST',
+      headers: {
+      'accept': 'application/json',
+      'Authorization': "Bearer " + bearerToken.token,
+      'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        'postId': _postID
+      })
+    });
+    const data = await response.json();
+    console.log(data);
+    console.log("Post liked."); //test
+    // location.reload();
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
 
+// unlike post function
+async function unlikePost(_post) {
+  try {
+    const response = await fetch(`${apiBaseURL}/api/likes/${_likeID}`, {
+    method: 'DELETE',
+    headers: {
+      'accept': 'application/json',
+      'Authorization': "Bearer " + bearerToken.token}
+    });
+    const data = response.json();
+    console.log(data); //test
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
 
 // delete post function
-async function deletePost(postID) {
+async function deletePost(_postID) {
   try{
-    fetch(`${apiBaseURL}/api/posts/${postID}`, {
+    const response = await fetch(`${apiBaseURL}/api/posts/${_postID}`, {
   method: 'DELETE',
   headers: {
     'accept': 'application/json',
     'Authorization': "Bearer " + bearerToken.token},
   });
+  const data = await response.json();
+  console.log(data); //test
+  console.log("Post deleted."); //test
   }
   catch(error){
     console.log(error);
@@ -157,19 +267,34 @@ async function deletePost(postID) {
 }
 
 // this code is for the side menu to work properly
-const profileMenu = document.getElementById("profileMenu");
-const sideActivity = document.getElementById("sidebarActivity");
-const moreLink = document.getElementById("showMoreLink");
+const settingsMenu = document.querySelector(".settings-menu");
+const darkBtn = document.getElementById("dark-btn")
 
-function toggleMenu() {
-  profileMenu.classList.toggle("open-menu");
+function settingsMenuToggle() {
+  settingsMenu.classList.toggle("settings-menu-height");
 }
 
-function toggleActivity() {
-  sideActivity.classList.toggle("open-activity");
+darkBtn.onclick = function () {
+  darkBtn.classList.toggle("dark-btn-on");
+  document.body.classList.toggle("dark-theme");
 
-  moreLink.innerHTML = sideActivity.classList.contains("open-activity") ? "Show less <b>-</b>" : "Show more <b>+</b>";
+  if (localStorage.getItem("theme") == "light"){
+    localStorage.setItem("theme", "dark");
+  }
+  else {
+    localStorage.setItem("theme", "light");
+  }
 }
 
-profileMenu.addEventListener("click", toggleMenu);
-moreLink.addEventListener("click", toggleActivity);
+// local storage
+if (localStorage.getItem("theme") == "light") {
+  darkBtn.classList.remove("dark-btn-on");
+  document.body.classList.remove("dark-theme");
+}
+else if (localStorage.getItem("theme") == "dark") {
+  darkBtn.classList.add("dark-btn-on");
+  document.body.classList.add("dark-theme");
+}
+else {
+  localStorage.setItem("theme", "light");
+}

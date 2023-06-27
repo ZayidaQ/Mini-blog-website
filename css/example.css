@@ -6,10 +6,27 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+:root {
+    --body-color: #efefef;
+    --nav-color: #F0D18F;
+    --bg-color: #fff;
+}
+
+.dark-theme {
+    --body-color: #0a0a0a;
+    --nav-color: #EEBC27;
+    --bg-color: #000;
 }
 
 body {
-    background: #efefef;
+    background: var(--body-color);
+    transition: background 0.3s;
 }
 
 /* ---------- Navigation bar ---------- */
@@ -17,7 +34,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #F0D18F;
+    background: var(--nav-color);
     padding: 5px 5%;
     position: sticky;
     top: 0;
@@ -92,6 +109,11 @@ nav {
     padding: 13px 5%;
 }
 
+.display-container {
+    display: flex;
+    flex-direction: column;
+}
+
 /* ---------- Left-content  ---------- */
 
 .left-sidebar {
@@ -162,7 +184,7 @@ nav {
 
 /* ---------- Right-content ---------- */
 .right-sidebar {
-    background: #fff;
+    background: var(--bg-color);
     flex-basis: 25%;
     position: sticky;
     top: 70px;
@@ -345,7 +367,7 @@ nav {
 }
 
 .post {
-    background: #fff;
+    background: var(--bg-color);
     padding: 20px 25px 5px;
     margin: 5px 0 15px;
 }
@@ -517,4 +539,31 @@ nav {
     justify-content: space-between;
     text-decoration: none;
     color: #404040;
+}
+
+/* --- Page transition -- */
+#dark-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ccc;
+    width: 45px;
+    border-radius: 15px;
+    padding: 2px 3px;
+    cursor: pointer;
+    display: flex;
+    transition: padding-left 0.5s, background 0.5s;
+}
+
+#dark-btn span {
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+#dark-btn.dark-btn-on {
+    padding-left: 23px;
+    background: #121212;
 }
