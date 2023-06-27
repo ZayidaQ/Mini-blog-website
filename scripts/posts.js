@@ -104,7 +104,7 @@ async function onDropdownSort() {
   // delete post when clicked
   for(let i = 0; i < allBtnDelete.length; i++){
     allBtnDelete[i].onclick = () => {
-      let text = "Are you sure you want to delete your post?"
+      let text = "Are you sure you want to DELETE your post?"
       if(confirm(text) == true){
         deletePost(allBtnDelete[i].id);
         alert("Post deleted succesfully.");
@@ -139,24 +139,22 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
 }
 
 //check if post is liked or not
-// async function isPostLiked(_post, _username) {
-//   try {
-//     const response = await fetch(`${apiBaseURL}/api/posts`,
-//     {
-//       method: 'GET',
-//       headers: {
-//         "Authorization": "Bearer " + bearerToken.token},
-//     });
-//     const data = response.json();
-//     let newData = Object.values(data);
-//     newData.forEach(post => {
-
-//     })
-//   }
-//   catch(error) {
-//     console.log(error);
-//   }
-// }
+//for each post, get array of likes, check if user is included
+async function isPostLiked(_postID, _username) {
+  try {
+    const response = await fetch(`${apiBaseURL}/api/posts/${_postID}`,
+    {
+      method: 'GET',
+      headers: {
+        "Authorization": "Bearer " + bearerToken.token},
+    });
+    const data = await response.json();
+    
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
 
 // like post function
 async function likePost(_postID) {
@@ -190,7 +188,7 @@ async function unlikePost(_post) {
       'accept': 'application/json',
       'Authorization': "Bearer " + bearerToken.token}
     });
-    const data = response.json();
+    const data = await response.json();
     console.log(data); //test
   }
   catch(error) {
