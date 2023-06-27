@@ -1,26 +1,138 @@
+/* Posts Page JavaScript */
+
 "use strict";
-const postForm = document.getElementById('post-form');
-const postInput = document.getElementById('post-input');
-const postDisplay = document.getElementById('post-display');
 
-postForm.addEventListener('submit', function(event) {
-  event.preventDefault();
+// global variables
+const btnLogOut = document.querySelector("#btnLogOut");
+const formCreatePost = document.querySelector("#formCreatePost");
+const bearerToken = getLoginData();
+const displayPosts = document.querySelector("#displayPosts");
+const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
+const allBtnDelete = document.getElementsByClassName("btnDelete");
+//specific user variables
+const loginData = getLoginData()
+const currentUser = (loginData).username
+ 
 
-  const postContent = postInput.value;
-
-  if (postContent.trim() !== '') {
-    displayPost(postContent);
-    postInput.value = '';
-  }
-});
-
-function displayPost(content) {
-  const postElement = document.createElement('div');
-  postElement.classList.add('post');
-  postElement.textContent = content;
-
-  postDisplay.appendChild(postElement);
+// when page loads
+window.onload = () => {
+  dropdownSortPosts.value = "new";
+  onDropdownSort();
+  dropdownSortPosts.onchange = onDropdownSort;
 }
 
+// logout button
+btnLogOut.onclick = () => {
+  logout();
+}
+
+// when button is clicked, create a post using value from form
+formCreatePost.onsubmit = function(event) {
+  event.preventDefault();
+  createPost();
+}
+
+
+// Function to display posts
+function displayPost () {
+  fetch(`https://microbloglite.herokuapp.com/api/posts?username=${currentUser}`, {
+    method: "GET", 
+    headers: {"Authorization": `Bearer ${loginData.token}`,
+            "Content-type":
+            "application/json; charset=UTF-8"}
+})
+.then(response => response.json())
+.then(data => {
+  let currentUserPosts = data.filter(post => post.username === currentUser);
+  
+        currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    console.log(currentUserPosts)
+    const displayPost = document.querySelector("#displayPosts")
+    let str = '';
+     for (const post of currentUserPosts) {
+
+      str += `
+      <div class="card" style="width: 18rem;">
+    
+    <div class="card-body">
+      <h5 class="card-title">Username:${post.username}</h5>
+      <p class="card-text">Post: ${post.text}</p>
+      <p class="card-text">Time: ${post.createdAt}</p>
+      <p class="card-text">Likes: ${post.likes.length}</p>
+
+      <a href="#" class="btn btn-primary">More</a>
+    </div>
+  </div>
+      <br>
+      `
+      }
+      displayPost.innerHTML = str;
+ 
+      });
+    } 
+displayPost()
+
+// function for creating a new post
+async function createPost() {
+  const newPost = document.querySelector("#textBoxPost").value;
+  try {
+    const response = await fetch(`${apiBaseURL}/api/posts`,
+    {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        "Authorization": "Bearer " + bearerToken.token},
+      body: JSON.stringify({
+        "text": newPost
+      }),
+      redirect: 'follow',
+    });
+    const data = await response.json();
+    console.log('data:', data);  //test
+  }
+  catch(error) {
+    console.log(error);
+  }
+  location.reload();
+}
+
+//function to sort onchange of dropdown select
+async function onDropdownSort() {
+  displayPosts.innerHTML = "";
+  try{
+    const response = await fetch(`${apiBaseURL}/api/posts`,
+    {
+      method: 'GET',
+      headers: {
+        "Authorization": "Bearer " + bearerToken.token},
+    });
+    const data = await response.json();
+    let newData = Object.values(data);
+    // console.log(newData); //test
+    if(dropdownSortPosts.value == "new") {
+      newData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+    }
+    else if(dropdownSortPosts.value == "popular") {
+      newData.sort((a, b) => b.likes.length - a.likes.length);
+    }
+    else if(dropdownSortPosts.value == "username") {
+      newData.sort((a, b) => b.username.toLowerCase() > a.username.toLowerCase() ? -1 : 1);
+    }
+    newData.forEach(post => {
+      let newDate = new Date(post.createdAt); // for date formatting
+      // check if own post to display delete button
+      let isPostOwner = false;
+      if(bearerToken.username == post.username){
+        isPostOwner = true;
+      }
+      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
+    })
+  }
+  catch(error) {
+    console.log(error);
+  }
+}
+
+//function for displaying all post 
 
 
