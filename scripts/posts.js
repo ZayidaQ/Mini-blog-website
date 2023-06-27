@@ -267,34 +267,19 @@ async function deletePost(_postID) {
 }
 
 // this code is for the side menu to work properly
-const settingsMenu = document.querySelector(".settings-menu");
-const darkBtn = document.getElementById("dark-btn")
+const profileMenu = document.getElementById("profileMenu");
+const sideActivity = document.getElementById("sidebarActivity");
+const moreLink = document.getElementById("showMoreLink");
 
-function settingsMenuToggle() {
-  settingsMenu.classList.toggle("settings-menu-height");
-}
-
-darkBtn.onclick = function () {
-  darkBtn.classList.toggle("dark-btn-on");
-  document.body.classList.toggle("dark-theme");
-
-  if (localStorage.getItem("theme") == "light"){
-    localStorage.setItem("theme", "dark");
-  }
-  else {
-    localStorage.setItem("theme", "light");
-  }
+function toggleMenu() {
+  profileMenu.classList.toggle("open-menu");
 }
 
-// local storage
-if (localStorage.getItem("theme") == "light") {
-  darkBtn.classList.remove("dark-btn-on");
-  document.body.classList.remove("dark-theme");
+function toggleActivity() {
+  sideActivity.classList.toggle("open-activity");
+
+  moreLink.innerHTML = sideActivity.classList.contains("open-activity") ? "Show less <b>-</b>" : "Show more <b>+</b>";
 }
-else if (localStorage.getItem("theme") == "dark") {
-  darkBtn.classList.add("dark-btn-on");
-  document.body.classList.add("dark-theme");
-}
-else {
-  localStorage.setItem("theme", "light");
-}
+
+profileMenu.addEventListener("click", toggleMenu);
+moreLink.addEventListener("click", toggleActivity);
