@@ -15,7 +15,8 @@ const allBtnLike = document.getElementsByClassName("btnLike");
 // when page loads
 window.onload = () => {
   dropdownSortPosts.value = "new";
-  onDropdownSort();
+  checkLikes(bearerToken.username);
+  onDropdownSort(); //change to check post like status onload
   dropdownSortPosts.onchange = onDropdownSort;
 }
 
@@ -29,6 +30,7 @@ formCreatePost.onsubmit = function(event) {
   event.preventDefault();
   createPost(newPost.value);
 }
+
 
 // function for creating a new post
 async function createPost(_content) {
@@ -82,21 +84,30 @@ async function onDropdownSort() {
       if(bearerToken.username == post.username){
         isPostOwner = true;
       }
+      //
       displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
     })
   }
   catch(error) {
     console.log(error);
   }
-  console.log(allBtnDelete.length);
-  console.log(allBtnLike.length);
+  console.log(allBtnDelete.length); //remove later
+  console.log(allBtnLike.length); //remove later
 
   // like a post when clicked
-  for(let i = 0; i < allBtnDelete.length; i++){
-    allBtnLike[i].onclick = () => {
-      likePost(allBtnLike[i].id);
-    }
-  }
+  // for(let i = 0; i < allBtnDelete.length; i++){
+  //   allBtnLike[i].onclick = () => {
+  //     if(likePost == true){
+  //       allBtnLike[i].textContent = "Like";
+  //       console.log("unliked");
+  //     }
+  //     else{
+  //       likePost(allBtnLike[i].id);
+  //       allBtnLike[i].textContent = "Dislike"
+  //       console.log("liked");
+  //     }
+  //   }
+  // }
 
   // delete post when clicked
   for(let i = 0; i < allBtnDelete.length; i++){
@@ -108,6 +119,32 @@ async function onDropdownSort() {
         location.reload();
       }
     }
+  }
+}
+
+//check post if all liked posts
+async function checkLikes(_username) {
+  let likeList = [];
+  try {
+    const response = await fetch(`${apiBaseURL}/api/posts`,
+    {
+      method: 'GET',
+      headers: {
+        "Authorization": "Bearer " + bearerToken.token},
+    });
+    const data = response.json();
+    let newData = Object.values(data);
+    newData.forEach(post => {
+      post.likes.forEach(like => {
+        if(like.username == _username){
+          likeList.push(post);
+        }
+      })
+    })
+    localStorage.setItem("myLikes", likeList);
+  }
+  catch(error) {
+    console.log(error);
   }
 }
 
@@ -127,7 +164,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
           <h5 class="card-title">@${_username}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
           <p>${_text}</p>
-          <button class="btn btn-primary btnLike" id="${_valueID}" value="">Like</button>
+          <button class="btn btn-primary btnLike" id="${_valueID}">Like</button>
           <span>${_numLikes}</span>
           ${ownPost}
         </div>
@@ -138,7 +175,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
 // like post function
 async function likePost(_postID) {
   try {
-    fetch(`${apiBaseURL}/api/likes`, {
+    const response = await fetch(`${apiBaseURL}/api/likes`, {
       method: 'POST',
       headers: {
       'accept': 'application/json',
@@ -148,6 +185,8 @@ async function likePost(_postID) {
         'postId': _postID
       })
     });
+    const data = await response.json();
+    console.log(data);
     console.log("Post liked."); //test
     // location.reload();
   }
@@ -157,14 +196,16 @@ async function likePost(_postID) {
 }
 
 // unlike post function
-async function unlikePost(_likeID) {
+async function unlikePost(_post) {
   try {
-    fetch(`${apiBaseURL}/api/likes/${_likeID}`, {
+    const response = await fetch(`${apiBaseURL}/api/likes/${_likeID}`, {
     method: 'DELETE',
     headers: {
       'accept': 'application/json',
       'Authorization': "Bearer " + bearerToken.token}
     });
+    const data = response.json();
+    console.log(data); //test
   }
   catch(error) {
     console.log(error);
@@ -174,12 +215,14 @@ async function unlikePost(_likeID) {
 // delete post function
 async function deletePost(_postID) {
   try{
-    fetch(`${apiBaseURL}/api/posts/${_postID}`, {
+    const response = await fetch(`${apiBaseURL}/api/posts/${_postID}`, {
   method: 'DELETE',
   headers: {
     'accept': 'application/json',
     'Authorization': "Bearer " + bearerToken.token},
   });
+  const data = await response.json();
+  console.log(data); //test
   console.log("Post deleted."); //test
   }
   catch(error){
