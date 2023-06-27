@@ -149,8 +149,15 @@ async function checkLikes(_username) {
   }
 }
 
+// This is for generatig random number
+function getRandomInteger(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 // function for displaying all posts
-function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID) {
+function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID ) {
       let ownPost = ""; //check if post owner so delete button appears
       if(_ownPost){
         ownPost = `<button type="button" class="btn btn-danger float-end btnDelete" id="${_valueID}"><i class="bi bi-trash-fill"></i></button>`;
@@ -158,14 +165,17 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
       else{
         ownPost = "";
       }
+
+      const randomNumber = Math.floor(Math.random() * 150);
+      const randomRepost = Math.floor(Math.random() * 40);
+
       displayPosts.innerHTML += 
       `
       <div class="post">
                 <div class="post-author">
-                    <img src="../img/shortcut-1.png" alt="">
+                    <img src="../img/OrangeUser.jpeg" alt="Default user">
                     <div>
                         <h1>${_username}</h1>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
                         <small>${_date} </small>
                     </div>
                 </div>
@@ -179,7 +189,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
                         <span class="liked-users"> ${_numLikes} likes </span>
                     </div>
                     <div>
-                        <span>29 comments || 47 Repost </span>
+                        <span> ${randomNumber} comments || ${randomRepost} Repost </span>
                     </div>
                 </div>
 
