@@ -95,19 +95,12 @@ async function onDropdownSort() {
   console.log(allBtnLike.length); //remove later
 
   // like a post when clicked
-  // for(let i = 0; i < allBtnDelete.length; i++){
-  //   allBtnLike[i].onclick = () => {
-  //     if(likePost == true){
-  //       allBtnLike[i].textContent = "Like";
-  //       console.log("unliked");
-  //     }
-  //     else{
-  //       likePost(allBtnLike[i].id);
-  //       allBtnLike[i].textContent = "Dislike"
-  //       console.log("liked");
-  //     }
-  //   }
-  // }
+  for(let i = 0; i < allBtnLike.length; i++){
+    allBtnLike[i].onclick = () => {
+      likePost(allBtnLike[i].id);
+      console.log(allBtnLike[i].id);//test remove later
+    }
+  }
 
   // delete post when clicked
   for(let i = 0; i < allBtnDelete.length; i++){
