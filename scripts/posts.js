@@ -11,6 +11,7 @@ const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
 const newPost = document.querySelector("#textBoxPost");
 const allBtnDelete = document.getElementsByClassName("btnDelete");
 const allBtnLike = document.getElementsByClassName("btnLike");
+const btnSubmit = document.querySelector("#btnSubmit");
 
 // when page loads
 window.onload = () => {
@@ -26,7 +27,7 @@ btnLogOut.onclick = () => {
 }
 
 // when button is clicked, create a post using value from form
-formCreatePost.onsubmit = function(event) {
+btnSubmit.onclick = function(event) {
   event.preventDefault();
   createPost(newPost.value);
 }
