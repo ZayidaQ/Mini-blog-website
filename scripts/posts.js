@@ -16,8 +16,7 @@ const btnSubmit = document.querySelector("#btnSubmit");
 // when page loads
 window.onload = () => {
   dropdownSortPosts.value = "new";
-  checkLikes(bearerToken.username);
-  onDropdownSort(); //change to check post like status onload
+  onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
 }
 
@@ -123,32 +122,6 @@ async function onDropdownSort() {
   }
 }
 
-//check post if all liked posts
-async function checkLikes(_username) {
-  let likeList = [];
-  try {
-    const response = await fetch(`${apiBaseURL}/api/posts`,
-    {
-      method: 'GET',
-      headers: {
-        "Authorization": "Bearer " + bearerToken.token},
-    });
-    const data = response.json();
-    let newData = Object.values(data);
-    newData.forEach(post => {
-      post.likes.forEach(like => {
-        if(like.username == _username){
-          likeList.push(post);
-        }
-      })
-    })
-    localStorage.setItem("myLikes", likeList);
-  }
-  catch(error) {
-    console.log(error);
-  }
-}
-
 // This is for generatig random number
 function getRandomInteger(min, max) {
   min = Math.ceil(min);
@@ -218,6 +191,27 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
             </div>
       `
 }
+
+//check if post is liked or not
+// async function isPostLiked(_post, _username) {
+//   try {
+//     const response = await fetch(`${apiBaseURL}/api/posts`,
+//     {
+//       method: 'GET',
+//       headers: {
+//         "Authorization": "Bearer " + bearerToken.token},
+//     });
+//     const data = response.json();
+//     let newData = Object.values(data);
+//     newData.forEach(post => {
+
+//     })
+//   }
+//   catch(error) {
+//     console.log(error);
+//   }
+// }
+
 
 // like post function
 async function likePost(_postID) {
