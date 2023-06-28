@@ -586,3 +586,23 @@ nav {
     align-items: flex-start;
     justify-content: space-between;
 }
+
+.pd-row {
+    display: flex;
+    align-items: flex-start;
+}
+
+.profile-detail-image {
+    width: 100px;
+    margin-right: 20px;
+    border-radius: 6px;
+}
+
+.profile-detail-row div h3 {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.profile-detail-row div p {
+    font-size: 13px;
+}
