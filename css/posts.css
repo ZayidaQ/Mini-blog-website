@@ -566,6 +566,9 @@ nav {
 }
 /* ---------- CSS Style for Profile page  ---------- */
 
+.clicked {
+    color: red;
+}
 
 /* ---------- CSS Style for Profile page  ---------- */
 .profile-container {
