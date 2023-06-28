@@ -92,7 +92,7 @@ async function onDropdownSort() {
           unlikeID = like._id;
         }
       })
-      //
+      //call function to display each post
       displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id, isLiked, unlikeID);
     })
   }
@@ -177,7 +177,7 @@ async function likePost(_postID) {
     const data = await response.json();
     console.log(data);
     console.log("Post liked."); //test
-    // location.reload();
+    location.reload();
   }
   catch(error) {
     console.log(error);
@@ -195,6 +195,7 @@ async function unlikePost(_postID) {
     });
     const data = await response.json();
     console.log(data); //test
+    location.reload();
   }
   catch(error) {
     console.log(error);
