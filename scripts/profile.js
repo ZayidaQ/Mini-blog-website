@@ -1,4 +1,4 @@
-/* Posts Page JavaScript */
+/* Profile Page JavaScript */
 
 "use strict";
 
@@ -33,7 +33,7 @@ formCreatePost.onsubmit = function(event) {
 }
 
 
-// Function to display posts
+// Function to display posts from current user 
 function displayPost () {
   fetch(`https://microbloglite.herokuapp.com/api/posts?username=${currentUser}`, {
     method: "GET", 
