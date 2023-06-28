@@ -18,9 +18,6 @@
 
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="/scripts/auth.js"></script>
-    <script>
-        if (isLoggedIn() === false) window.location.replace("/html/index.html");
-    </script>
 </head>
 
 <body>
@@ -95,8 +92,28 @@
         </div>
     </nav>
 
+    <!-- Profile page -->
 
-    
+    <div class="profile-container">
+        <img src="../img/banner.jpeg" alt="banner image" class="cover-img">
+        <div class="profile-details">
+            <div class="profile-detail-left">
+                <div class="profile-detail-row">
+                    <img src="../img/user-1.JPG" alt="profile pic">
+                    <div>
+                        <h3>Zhayida Haishan</h3> <!-- PLace holder-->
+                        <p>428 friends - 168 mutual </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-detail-right">
+
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="footer">
         <p> Copyright 2023 - BusyBees </p>
@@ -104,6 +121,9 @@
 
     
     <script src="../scripts/posts.js"></script>
+    <script>
+        
+    </script>
 </body>
 
 </html>

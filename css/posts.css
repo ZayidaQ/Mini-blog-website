@@ -564,3 +564,25 @@ nav {
     padding-left: 23px;
     background: #121212;
 }
+
+
+/* ---------- CSS Style for Profile page  ---------- */
+.profile-container {
+    padding: 20px 15%;
+    color: #626262;
+}
+
+.cover-img {
+    width: 100%;
+    border-radius: 6px;
+    margin-bottom: 14px;
+}
+
+.profile-details {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
