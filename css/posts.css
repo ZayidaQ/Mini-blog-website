@@ -564,6 +564,7 @@ nav {
     padding-left: 23px;
     background: #121212;
 }
+/* ---------- CSS Style for Profile page  ---------- */
 
 
 /* ---------- CSS Style for Profile page  ---------- */
@@ -605,4 +606,9 @@ nav {
 
 .profile-detail-row div p {
     font-size: 13px;
+}
+
+.profile-detail-row div img {
+    width: 25px;
+    border-radius: ;
 }

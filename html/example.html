@@ -18,6 +18,9 @@
 
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="/scripts/auth.js"></script>
+    <script>
+        if (isLoggedIn() === false) window.location.replace("/html/index.html");
+    </script>
 </head>
 
 <body>
@@ -51,7 +54,7 @@
                     <img src="../img/user-1.JPG" alt="">
                     <div>
                         <p> Zayida </p>
-                        <a href="../html/profile.html">See your profile</a>
+                        <a href="../html/posts.html">See your profile</a>
                     </div>
                 </div>
                 <hr>
@@ -119,11 +122,9 @@
         <p> Copyright 2023 - BusyBees </p>
     </div>
 
-    
+
     <script src="../scripts/posts.js"></script>
-    <script>
-        
-    </script>
+    <script src="../scripts/ToggleMenu.js"></script>
 </body>
 
 </html>
