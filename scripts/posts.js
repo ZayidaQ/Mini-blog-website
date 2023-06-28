@@ -129,12 +129,10 @@ async function onDropdownSort() {
   }
 }
 
-// This is for generatig random number
-function getRandomInteger(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+document.getElementById("myIcon").addEventListener("click", function() {
+  this.classList.toggle("clicked");
+});
+
 
 // function for displaying all posts
 function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID ) {
@@ -148,6 +146,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
 
       const randomNumber = Math.floor(Math.random() * 150);
       const randomRepost = Math.floor(Math.random() * 40);
+
 
       displayPosts.innerHTML += 
       `
@@ -178,7 +177,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
                         <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
                     </div>
                     <div class="post-activity-link">
-                        <i class="far fa-heart" id="${_valueID}"></i></i>
+                        <i class="far fa-heart" id="myIcon"></i></i>
                         <span>Like</span>
                     </div>
                     <div class="post-activity-link">
@@ -186,7 +185,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
                         <span>Comment</span>
                     </div>
                     <div class="post-activity-link">
-                        <i class="fas fa-share" ${ownPost}></i>
+                        <i class="fas fa-share"></i>
                         <span>Share</span>
                     </div>
                     <div class="post-activity-link">
