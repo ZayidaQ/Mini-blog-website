@@ -12,6 +12,7 @@ const newPost = document.querySelector("#textBoxPost");
 const allBtnDelete = document.getElementsByClassName("btnDelete");
 const allBtnLike = document.getElementsByClassName("btnLike");
 const btnSubmit = document.querySelector("#btnSubmit");
+const btnScrollToTop = document.querySelector(".btnScrollToTop");
 
 // when page loads
 window.onload = () => {
@@ -19,18 +20,6 @@ window.onload = () => {
   onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
 }
-
-//   window.addEventListener('load',function() {
-//     if(localStorage.getItem('scrollPosition') !== null){
-//       window.scrollY(localStorage.getItem('scrollPosition'));
-//     }
-//  },false);
-
-// window.addEventListener('scroll',function() {
-//   //When scroll change, you save it on localStorage.
-//   localStorage.setItem('scrollPosition',window.scrollY);
-// },false);
-
 
 // logout button
 btnLogOut.onclick = () => {
@@ -236,7 +225,6 @@ async function likePost(_postID) {
     console.log(data);
     console.log("Post liked."); //test
     location.reload();
-
   }
   catch(error) {
     console.log(error);
@@ -254,8 +242,6 @@ async function unlikePost(_post) {
     });
     const data = await response.json();
     console.log(data); //test
-    location.reload();
-
   }
   catch(error) {
     console.log(error);
