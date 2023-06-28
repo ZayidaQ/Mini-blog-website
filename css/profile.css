@@ -172,8 +172,3 @@ a{
     display: none;
 }
 
-.container{
-    padding: 13px 5%;
-    display: flex;
-    justify-content: space-between;
-}
