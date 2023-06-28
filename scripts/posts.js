@@ -57,6 +57,7 @@ async function createPost(_content) {
 //function to sort posts onchange of dropdown select
 async function onDropdownSort() {
   displayPosts.innerHTML = "";
+  let unlikeID = "";
   try{
     const response = await fetch(`${apiBaseURL}/api/posts?limit=1000&offset=0`,
     {
@@ -83,8 +84,16 @@ async function onDropdownSort() {
       if(bearerToken.username == post.username){
         isPostOwner = true;
       }
+      //check if liked or not
+      let isLiked = false;
+      post.likes.forEach(like => {
+        if(like.username == bearerToken.username){
+          isLiked = true;
+          unlikeID = like._id;
+        }
+      })
       //
-      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
+      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id, isLiked, unlikeID);
     })
   }
   catch(error) {
@@ -96,8 +105,12 @@ async function onDropdownSort() {
   // like a post when clicked
   for(let i = 0; i < allBtnLike.length; i++){
     allBtnLike[i].onclick = () => {
-      likePost(allBtnLike[i].id);
-      console.log(allBtnLike[i].id);//test remove later
+      if(allBtnLike[i].value == "Unliked"){
+        likePost(allBtnLike[i].id);
+      }
+      else if(allBtnLike[i].value == "Liked"){
+        unlikePost(allBtnLike[i].id);
+      }
     }
   }
 
@@ -115,7 +128,7 @@ async function onDropdownSort() {
 }
 
 // function for displaying all posts
-function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID) {
+function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID, _isLiked, _unlikeID) {
       let ownPost = ""; //check if post owner so delete button appears
       if(_ownPost){
         ownPost = `<button type="button" class="btn btn-danger float-end btnDelete" id="${_valueID}"><i class="bi bi-trash-fill"></i></button>`;
@@ -123,6 +136,16 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
       else{
         ownPost = "";
       }
+
+      //check if post is liked or not to display appropriate button
+      let isLiked = "";
+      if(_isLiked){
+        isLiked = `<button class="btn btn-primary btnLike" id="${_unlikeID}" value="Liked">Unlike</button>`;
+      }
+      else{
+        isLiked = `<button class="btn btn-primary btnLike" id="${_valueID}" value="Unliked">Like</button>`
+      }
+
       displayPosts.innerHTML += 
       `
       <div class="card mb-2" style="width: 40rem">
@@ -130,30 +153,12 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
           <h5 class="card-title">@${_username}</h5>
           <h6 class="card-subtitle mb-2 text-body-secondary">${_date}</h6>
           <p>${_text}</p>
-          <button class="btn btn-primary btnLike" id="${_valueID}">Like</button>
+          ${isLiked}
           <span>${_numLikes}</span>
           ${ownPost}
         </div>
       </div>
       `
-}
-
-//check if post is liked or not
-//for each post, get array of likes, check if user is included
-async function isPostLiked(_postID, _username) {
-  try {
-    const response = await fetch(`${apiBaseURL}/api/posts/${_postID}`,
-    {
-      method: 'GET',
-      headers: {
-        "Authorization": "Bearer " + bearerToken.token},
-    });
-    const data = await response.json();
-    
-  }
-  catch(error) {
-    console.log(error);
-  }
 }
 
 // like post function
@@ -180,9 +185,9 @@ async function likePost(_postID) {
 }
 
 // unlike post function
-async function unlikePost(_post) {
+async function unlikePost(_postID) {
   try {
-    const response = await fetch(`${apiBaseURL}/api/likes/${_likeID}`, {
+    const response = await fetch(`${apiBaseURL}/api/likes/${_postID}`, {
     method: 'DELETE',
     headers: {
       'accept': 'application/json',
