@@ -12,12 +12,27 @@ const newPost = document.querySelector("#textBoxPost");
 const allBtnDelete = document.getElementsByClassName("btnDelete");
 const allBtnLike = document.getElementsByClassName("btnLike");
 const btnSubmit = document.querySelector("#btnSubmit");
+const btnScrollToTop = document.querySelector(".btnScrollToTop");
 
 // when page loads
 window.onload = () => {
   dropdownSortPosts.value = "new";
   onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
+}
+
+// Show or hide button that scrolls to the top of page
+window.onscroll = () => {
+  scrollFunction();
+}
+
+const scrollFunction = () => {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      btnScrollToTop.style.display = "block";
+  } 
+  else {
+      btnScrollToTop.style.display = "none";
+  }
 }
 
 // logout button
@@ -84,7 +99,7 @@ async function onDropdownSort() {
       if(bearerToken.username == post.username){
         isPostOwner = true;
       }
-      //
+      //call function to display each post
       displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
     })
   }
@@ -222,7 +237,7 @@ async function likePost(_postID) {
     const data = await response.json();
     console.log(data);
     console.log("Post liked."); //test
-    // location.reload();
+    location.reload();
   }
   catch(error) {
     console.log(error);
@@ -240,6 +255,7 @@ async function unlikePost(_post) {
     });
     const data = await response.json();
     console.log(data); //test
+    location.reload();
   }
   catch(error) {
     console.log(error);
