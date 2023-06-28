@@ -105,7 +105,7 @@ async function onDropdownSort() {
   // delete post when clicked
   for(let i = 0; i < allBtnDelete.length; i++){
     allBtnDelete[i].onclick = () => {
-      let text = "Are you sure you want to delete your post?"
+      let text = "Are you sure you want to DELETE your post?"
       if(confirm(text) == true){
         deletePost(allBtnDelete[i].id);
         alert("Post deleted succesfully.");
@@ -238,7 +238,7 @@ async function unlikePost(_post) {
       'accept': 'application/json',
       'Authorization': "Bearer " + bearerToken.token}
     });
-    const data = response.json();
+    const data = await response.json();
     console.log(data); //test
   }
   catch(error) {
