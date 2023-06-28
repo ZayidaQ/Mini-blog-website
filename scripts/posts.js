@@ -130,13 +130,6 @@ async function onDropdownSort() {
   }
 }
 
-// This is for generatig random number
-function getRandomInteger(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 // function for displaying all posts
 function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID ) {
       let ownPost = ""; //check if post owner so delete button appears
@@ -179,7 +172,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
                         <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
                     </div>
                     <div class="post-activity-link">
-                        <i class="far fa-heart" id="${_valueID}"></i></i>
+                        <i class="far fa-heart turnRed" id="${_valueID}"></i></i>
                         <span>Like</span>
                     </div>
                     <div class="post-activity-link">
@@ -199,6 +192,11 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
             </div>
       `
 }
+
+// fuction for trying to turn the icon red
+document.getElementsByClassName("turnRed").addEventListener("click", function() {
+  this.classList.toggle("clicked");
+})
 
 //check if post is liked or not
 // async function isPostLiked(_post, _username) {
