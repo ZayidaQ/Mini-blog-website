@@ -16,8 +16,7 @@ const btnSubmit = document.querySelector("#btnSubmit");
 // when page loads
 window.onload = () => {
   dropdownSortPosts.value = "new";
-  checkLikes(bearerToken.username);
-  onDropdownSort(); //change to check post like status onload
+  onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
 }
 
@@ -60,7 +59,7 @@ async function createPost(_content) {
 async function onDropdownSort() {
   displayPosts.innerHTML = "";
   try{
-    const response = await fetch(`${apiBaseURL}/api/posts`,
+    const response = await fetch(`${apiBaseURL}/api/posts?limit=1000&offset=0`,
     {
       method: 'GET',
       headers: {
@@ -96,56 +95,23 @@ async function onDropdownSort() {
   console.log(allBtnLike.length); //remove later
 
   // like a post when clicked
-  // for(let i = 0; i < allBtnDelete.length; i++){
-  //   allBtnLike[i].onclick = () => {
-  //     if(likePost == true){
-  //       allBtnLike[i].textContent = "Like";
-  //       console.log("unliked");
-  //     }
-  //     else{
-  //       likePost(allBtnLike[i].id);
-  //       allBtnLike[i].textContent = "Dislike"
-  //       console.log("liked");
-  //     }
-  //   }
-  // }
+  for(let i = 0; i < allBtnLike.length; i++){
+    allBtnLike[i].onclick = () => {
+      likePost(allBtnLike[i].id);
+      console.log(allBtnLike[i].id);//test remove later
+    }
+  }
 
   // delete post when clicked
   for(let i = 0; i < allBtnDelete.length; i++){
     allBtnDelete[i].onclick = () => {
-      let text = "Are you sure you want to delete your post?"
+      let text = "Are you sure you want to DELETE your post?"
       if(confirm(text) == true){
         deletePost(allBtnDelete[i].id);
         alert("Post deleted succesfully.");
         location.reload();
       }
     }
-  }
-}
-
-//check post if all liked posts
-async function checkLikes(_username) {
-  let likeList = [];
-  try {
-    const response = await fetch(`${apiBaseURL}/api/posts`,
-    {
-      method: 'GET',
-      headers: {
-        "Authorization": "Bearer " + bearerToken.token},
-    });
-    const data = response.json();
-    let newData = Object.values(data);
-    newData.forEach(post => {
-      post.likes.forEach(like => {
-        if(like.username == _username){
-          likeList.push(post);
-        }
-      })
-    })
-    localStorage.setItem("myLikes", likeList);
-  }
-  catch(error) {
-    console.log(error);
   }
 }
 
@@ -219,6 +185,27 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
       `
 }
 
+//check if post is liked or not
+// async function isPostLiked(_post, _username) {
+//   try {
+//     const response = await fetch(`${apiBaseURL}/api/posts`,
+//     {
+//       method: 'GET',
+//       headers: {
+//         "Authorization": "Bearer " + bearerToken.token},
+//     });
+//     const data = response.json();
+//     let newData = Object.values(data);
+//     newData.forEach(post => {
+
+//     })
+//   }
+//   catch(error) {
+//     console.log(error);
+//   }
+// }
+
+
 // like post function
 async function likePost(_postID) {
   try {
@@ -251,7 +238,7 @@ async function unlikePost(_post) {
       'accept': 'application/json',
       'Authorization': "Bearer " + bearerToken.token}
     });
-    const data = response.json();
+    const data = await response.json();
     console.log(data); //test
     location.reload();
   }
