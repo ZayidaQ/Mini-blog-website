@@ -19,6 +19,18 @@ window.onload = () => {
   dropdownSortPosts.onchange = onDropdownSort;
 }
 
+//   window.addEventListener('load',function() {
+//     if(localStorage.getItem('scrollPosition') !== null){
+//       window.scrollY(localStorage.getItem('scrollPosition'));
+//     }
+//  },false);
+
+// window.addEventListener('scroll',function() {
+//   //When scroll change, you save it on localStorage.
+//   localStorage.setItem('scrollPosition',window.scrollY);
+// },false);
+
+
 // logout button
 btnLogOut.onclick = () => {
   logout();
@@ -29,6 +41,8 @@ formCreatePost.onsubmit = function(event) {
   event.preventDefault();
   createPost(newPost.value);
 }
+
+
 
 
 // function for creating a new post
@@ -178,6 +192,7 @@ async function likePost(_postID) {
     console.log(data);
     console.log("Post liked."); //test
     location.reload();
+
   }
   catch(error) {
     console.log(error);
@@ -196,6 +211,7 @@ async function unlikePost(_postID) {
     const data = await response.json();
     console.log(data); //test
     location.reload();
+
   }
   catch(error) {
     console.log(error);
