@@ -21,6 +21,20 @@ window.onload = () => {
   dropdownSortPosts.onchange = onDropdownSort;
 }
 
+// Show or hide button that scrolls to the top of page
+window.onscroll = () => {
+  scrollFunction();
+}
+
+const scrollFunction = () => {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      btnScrollToTop.style.display = "block";
+  } 
+  else {
+      btnScrollToTop.style.display = "none";
+  }
+}
+
 // logout button
 btnLogOut.onclick = () => {
   logout();
@@ -31,8 +45,6 @@ btnSubmit.onclick = function(event) {
   event.preventDefault();
   createPost(newPost.value);
 }
-
-
 
 
 // function for creating a new post
@@ -118,10 +130,12 @@ async function onDropdownSort() {
   }
 }
 
-document.getElementById("myIcon").addEventListener("click", function() {
-  this.classList.toggle("clicked");
-});
-
+// This is for generatig random number
+function getRandomInteger(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 // function for displaying all posts
 function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID ) {
@@ -135,7 +149,6 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
 
       const randomNumber = Math.floor(Math.random() * 150);
       const randomRepost = Math.floor(Math.random() * 40);
-
 
       displayPosts.innerHTML += 
       `
@@ -166,7 +179,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
                         <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
                     </div>
                     <div class="post-activity-link">
-                        <i class="far fa-heart" id="myIcon"></i></i>
+                        <i class="far fa-heart" id="${_valueID}"></i></i>
                         <span>Like</span>
                     </div>
                     <div class="post-activity-link">
@@ -174,7 +187,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID 
                         <span>Comment</span>
                     </div>
                     <div class="post-activity-link">
-                        <i class="fas fa-share"></i>
+                        <i class="fas fa-share" ${ownPost}></i>
                         <span>Share</span>
                     </div>
                     <div class="post-activity-link">
@@ -242,6 +255,7 @@ async function unlikePost(_post) {
     });
     const data = await response.json();
     console.log(data); //test
+    location.reload();
   }
   catch(error) {
     console.log(error);
