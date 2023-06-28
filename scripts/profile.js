@@ -26,7 +26,7 @@ btnLogOut.onclick = () => {
   logout();
 }
 
-// when button is clicked, create a post using value from form
+// when button is clicked
 formCreatePost.onsubmit = function(event) {
   event.preventDefault();
   createPost();
