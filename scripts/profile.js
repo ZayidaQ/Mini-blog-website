@@ -26,7 +26,7 @@ btnLogOut.onclick = () => {
   logout();
 }
 
-// when button is clicked, create a post using value from form
+// when button is clicked
 formCreatePost.onsubmit = function(event) {
   event.preventDefault();
   createPost();
@@ -44,7 +44,7 @@ function displayPost () {
 .then(response => response.json())
 .then(data => {
   let currentUserPosts = data.filter(post => post.username === currentUser);
-  
+// to display post on screen 
         currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     console.log(currentUserPosts)
     const displayPost = document.querySelector("#displayPosts")
@@ -133,6 +133,35 @@ async function onDropdownSort() {
   }
 }
 
-//function for displaying all post 
+// side menu to work
+const settingsMenu = document.querySelector(".settings-menu");
+const darkBtn = document.getElementById("dark-btn")
 
+function settingsMenuToggle() {
+  settingsMenu.classList.toggle("settings-menu-height");
+}
 
+darkBtn.onclick = function () {
+  darkBtn.classList.toggle("dark-btn-on");
+  document.body.classList.toggle("dark-theme");
+
+  if (localStorage.getItem("theme") == "light"){
+    localStorage.setItem("theme", "dark");
+  }
+  else {
+    localStorage.setItem("theme", "light");
+  }
+}
+
+// local storage
+if (localStorage.getItem("theme") == "light") {
+  darkBtn.classList.remove("dark-btn-on");
+  document.body.classList.remove("dark-theme");
+}
+else if (localStorage.getItem("theme") == "dark") {
+  darkBtn.classList.add("dark-btn-on");
+  document.body.classList.add("dark-theme");
+}
+else {
+  localStorage.setItem("theme", "light");
+}
