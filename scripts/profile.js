@@ -23,6 +23,7 @@ window.onload = () => {
   dropdownSortPosts.value = "new";
   onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
+  getbio();
 }
 
 // logout button
@@ -95,7 +96,41 @@ const currentUser = (loginData).username
   });
 }
 
+<<<<<<< Updated upstream
 getbio()
+=======
+//function updateBio() {
+//   const loginData = getLoginData()
+// const currentUser = (loginData).username
+//   fetch(`https://microbloglite.herokuapp.com/api/users/${currentUser}`, {
+//     method: "PUT", 
+//     headers: {
+//       "Authorization": `Bearer ${loginData.token}`,
+//       "Content-type": "application/json; charset=UTF-8"
+//     }
+// body: JSON.stringify({
+//   'bio': 'hello',
+// })
+//   })
+//   .then(response => {
+//     if (!response.ok) {
+//       throw new Error("Error retrieving data from the API");
+//     }
+//     return response.json();
+//   })
+//   .then(data => {
+//     // Access the 'about' property within the 'user' object
+//     const about = data.bio;
+//     //To display bio on website
+//     bioText.innerHTML = about
+//     // Use the 'about' value as needed
+//     console.log (about);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
+// }
+>>>>>>> Stashed changes
 
 
 // Function to display posts from current user 
@@ -113,7 +148,7 @@ function displayPost() {
       let currentUserPosts = data.filter(post => post.username === currentUser);
       // to display post on screen 
       currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-      console.log(currentUserPosts)
+      // console.log(currentUserPosts);
       const displayPost = document.querySelector("#recentPost")
 
       const randomNumber = Math.floor(Math.random() * 150);
@@ -121,7 +156,6 @@ function displayPost() {
 
       let str = '';
       for (const post of currentUserPosts) {
-
         str += `
       <div class="post">
                 <div class="post-author">
@@ -162,7 +196,7 @@ function displayPost() {
                         <i class="fas fa-paper-plane"></i>
                         <span>Send</span>
                     </div>
-                    <div class="post-activity-link">
+                    <div class="post-activity-link btnDelete" onclick="deletePost('${post._id}')">
                       <i class="fas fa-trash" style="color: #df4e4e;"></i></i>
                         <span>Trash</span>
                     </div>
@@ -176,6 +210,46 @@ function displayPost() {
     });
 }
 displayPost()
+
+// delete post function
+async function deletePost(_postID) {
+  try{
+    const response = await fetch(`https://microbloglite.herokuapp.com/api/posts/`, {
+    method: 'GET',
+    headers: {
+      'accept': 'application/json',
+      'Authorization': `Bearer ${loginData.token}`},
+    });
+    const data = await response.json();
+    let newData = Object.values(data);
+    console.log(newData); //test
+    newData.forEach(post => {
+      if(post.username == loginData.username){
+        if(post._id == _postID){
+          try{
+            if(confirm("Are you sure you want to DELETE your post?") == true){
+              fetch(`https://microbloglite.herokuapp.com/api/posts/${_postID}`, {
+                method: 'DELETE',
+                headers: {
+                  'accept': 'application/json',
+                  'Authorization': `Bearer ${loginData.token}`},
+              })
+              .then(response => response.json())
+              alert("Post deleted succesfully.");
+              location.reload();
+            }
+            }
+            catch(error){
+              console.log(error);
+            }
+        }
+      }
+    })
+  }
+  catch(error){
+    console.log(error);
+  }
+}
 
 // function for creating a new post
 async function createPost() {
@@ -221,9 +295,6 @@ async function onDropdownSort() {
     }
     else if (dropdownSortPosts.value == "popular") {
       newData.sort((a, b) => b.likes.length - a.likes.length);
-    }
-    else if (dropdownSortPosts.value == "username") {
-      newData.sort((a, b) => b.username.toLowerCase() > a.username.toLowerCase() ? -1 : 1);
     }
     newData.forEach(post => {
       let newDate = new Date(post.createdAt); // for date formatting
