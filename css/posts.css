@@ -16,12 +16,14 @@
     --body-color: #efefef;
     --nav-color: #F0D18F;
     --bg-color: #fff;
+    --text-color:  #121212;
 }
 
 .dark-theme {
-    --body-color: #0a0a0a;
+    --body-color: #454545;
     --nav-color: #EEBC27;
-    --bg-color: #000;
+    --bg-color: #242424;
+    --text-color: #FAF6EE;
 }
 
 body {
@@ -142,7 +144,7 @@ nav {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
-    color: #404040;
+    color: var(--text-color);
     width: fit-content;
 }
 
@@ -203,7 +205,7 @@ nav {
     align-self: flex-start;
     padding: 20px;
     border-radius: 15px;
-    color: #404040;
+    color: var(--text-color);
 }
 
 .right-sidebar h4 {
@@ -305,40 +307,25 @@ nav {
     top: unset;
     bottom: 5px;
 }
+
 /*----- drop down -----*/
 .dropdown-container {
     position: relative;
-    width: 200px; /* Adjust the width as per your needs */
-    margin: 20px; /* Adjust the margin as per your needs */
-  }
-  
-  .form-select {
+    width: 200px;
+    margin: 20px;
+}
+
+.form-select {
     text-align: right;
     width: 100%;
-    height: 30px; /* Adjust the height as per your needs */
+    height: 30px;
     appearance: none;
     border: none;
     outline: none;
-    background-color: transparent; /* Adjust the background color as per your needs */
-    padding: 5px 10px; /* Adjust the padding as per your needs */
-    font-size: 14px; /* Adjust the font size as per your needs */
-    border-radius: 4px; /* Adjust the border radius as per your needs */
-  }
-  
-  /* Custom arrow icon */
-  .form-select::after {
-    content: "\25BC";
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    font-size: 12px; /* Adjust the font size as per your needs */
-    pointer-events: none;
-    color: #888; /* Adjust the arrow color as per your needs */
-  }
-  
-  
-
+    background-color: transparent;
+    padding: 5px 10px;
+    font-size: 14px;
+}
 
 /* ---------- Main-content ---------- */
 .main-content {
@@ -508,7 +495,7 @@ nav {
     margin-right: 8px;
 }
 
-/* user profile css */
+/* ---------------------------------------------------------------- user profile css */
 .user-profile {
     display: flex;
     align-items: center;
@@ -860,6 +847,54 @@ nav {
 .friends-box a:hover p {
     opacity: 1;
 }
+
+/* ----- Scroll to Top button ----- */
+.btnScrollToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: #ffffff;
+    color: #888;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btnScrollToTop:hover {
+    background-color: #888;
+    color: #f8f8f8;
+    transform: scale(1.1);
+}
+
+.btnScrollToTop:focus {
+    outline: none;
+}
+
+/* Add a subtle pulsating animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.btnScrollToTop.animated {
+    animation: pulse 2s infinite;
+    /* Apply the animation */
+}
+
 
 /* ----- Media query ----- */
 @media (max-width: 900px) {
