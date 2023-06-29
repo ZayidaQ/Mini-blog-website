@@ -16,14 +16,22 @@
     --body-color: #efefef;
     --nav-color: #F0D18F;
     --bg-color: #fff;
-    --text-color:  #121212;
+    --text-color: #121212;
+    --text-body-color: #FAF6EE;
+    --right-event: #fff;
+    --right-sidebar: #efefef;
+    --settings-menu: #fff;
 }
 
 .dark-theme {
-    --body-color: #454545;
+    --body-color: #1e1f22;
     --nav-color: #EEBC27;
-    --bg-color: #242424;
+    --bg-color: #41434a;
     --text-color: #FAF6EE;
+    --text-body-color: #313134;
+    --right-event: #1e1e1e;
+    --right-sidebar: #41434a;
+    --settings-menu: #2c2c2c;
 }
 
 body {
@@ -198,7 +206,7 @@ nav {
 
 /* ---------- Right-content ---------- */
 .right-sidebar {
-    background: var(--bg-color);
+    background: var(--right-sidebar);
     flex-basis: 25%;
     position: sticky;
     top: 70px;
@@ -235,6 +243,7 @@ nav {
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--right-event);
 }
 
 .event p {
@@ -273,6 +282,7 @@ nav {
 
 .online-list p {
     position: relative;
+    color: var(--text-color);
 }
 
 .online-list p::after {
@@ -289,6 +299,10 @@ nav {
 
 .online-list p:hover::after {
     transform: scaleX(1);
+}
+
+.online-list a {
+    text-decoration: none;
 }
 
 
@@ -325,6 +339,7 @@ nav {
     background-color: transparent;
     padding: 5px 10px;
     font-size: 14px;
+    color: var(--text-color);
 }
 
 /* ---------- Main-content ---------- */
@@ -333,7 +348,7 @@ nav {
 }
 
 .create-post {
-    background: #fff;
+    background: var(--bg-color);
     border-radius: 15px;
 }
 
@@ -356,6 +371,7 @@ nav {
     resize: none;
     background: transparent;
     margin-top: 8px;
+    color: var(--text-color);
 }
 
 ::placeholder {
@@ -369,8 +385,8 @@ nav {
 
 .create-post-links li {
     list-style: none;
-    border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    border-top: 1px solid #a9a9a9;
+    border-right: 1px solid #a9a9a9;
     flex-basis: 25%;
     height: 40px;
     font-size: 13px;
@@ -378,6 +394,7 @@ nav {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    color: var(--text-color);
 }
 
 .create-post-links li i {
@@ -430,12 +447,14 @@ nav {
 .post-author small {
     display: block;
     margin-bottom: -2px;
+    color: #8b8c89;
 }
 
 .post p {
     font-size: 14px;
-    background-color: #FAF6EE;
+    background-color: var(--text-body-color);
     padding: 20px;
+    color: var(--text-color);
 }
 
 .post i.trash {
@@ -453,6 +472,7 @@ nav {
     font-size: 12px;
     border-bottom: 1px solid #ccc;
     padding: 15px 0;
+    color: #8b8c89;
 }
 
 .post-stats div {
@@ -463,10 +483,12 @@ nav {
 .post-stats i {
     font-size: 15px;
     margin-right: 5px;
+    color: ;
 }
 
 .liked-users {
     margin-left: 5px;
+    color: #8b8c89;
 }
 
 
@@ -493,6 +515,11 @@ nav {
 .post-activity-link i {
     font-size: 18px;
     margin-right: 8px;
+    color: var(--text-color);
+}
+
+.post-activity-link span {
+    color: var(--text-color);
 }
 
 /* ---------------------------------------------------------------- user profile css */
@@ -511,7 +538,7 @@ nav {
 .user-profile p {
     margin-bottom: -5px;
     font-weight: 500;
-    color: #404040;
+    color: var(--text-color);
 }
 
 /* Footer */
@@ -538,7 +565,7 @@ nav {
     position: absolute;
     width: 90%;
     max-width: 350px;
-    background: #fff;
+    background: var(--settings-menu);
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.4);
     border-radius: 10px;
     /* You can change this later if you want! */
@@ -582,7 +609,7 @@ nav {
     align-items: center;
     justify-content: space-between;
     text-decoration: none;
-    color: #404040;
+    color: var(--text-color);
 }
 
 /* --- Page transition -- */
@@ -609,7 +636,7 @@ nav {
 
 #dark-btn.dark-btn-on {
     padding-left: 23px;
-    background: #121212;
+    background: #494949;
 }
 
 /* ---------- CSS Style for Profile page  ---------- */
