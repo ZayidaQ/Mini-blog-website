@@ -112,7 +112,7 @@ function displayPost() {
 
                 <div class="post-activity">
                     <div>
-                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
+                        <img src="../img/main-user.png" alt="" class="post-activity-user-icon">
                     </div>
                     <div class="post-activity-link">
                         <i class="fas fa-comment"></i>
