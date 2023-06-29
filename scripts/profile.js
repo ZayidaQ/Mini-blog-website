@@ -32,14 +32,14 @@ btnLogOut.onclick = () => {
 
 btnEdit.onclick = () => {
   inputBio.style.display = "block";
-  btnSave.style.display = "block";
+  btnSave.style.display = "inline-block";
   btnEdit.style.display = "none";
 }
 
 btnSave.onclick = () => {
   inputBio.style.display = "none";
   btnSave.style.display = "none";
-  btnEdit.style.display = "block";
+  btnEdit.style.display = "inline-block";
 
   fetch(`https://microbloglite.herokuapp.com/api/users/${loginData.username}`, {
       method: 'PUT',

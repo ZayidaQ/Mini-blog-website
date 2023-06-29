@@ -39,7 +39,7 @@
 body {
     background: var(--body-color);
     transition: background 0.3s;
-    min-height: 100vh;  
+    min-height: 100vh;
 }
 
 html {
@@ -663,6 +663,21 @@ nav {
     display: none;
 }
 
+#inputBio {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #inputBio:focus {
+    outline: none;
+    border-color: #EEBC27;
+    box-shadow: 0 0 5px #F0D18F;
+  }
+  
+
 /* ---------- CSS Style for Profile page  ---------- */
 .profile-container {
     padding: 20px 15%;
@@ -683,6 +698,7 @@ nav {
     align-items: flex-start;
     justify-content: space-between;
 }
+
 
 .profile-detail-row {
     display: flex;
@@ -722,6 +738,14 @@ nav {
     border-radius: 3px;
     margin-left: 10px;
     cursor: pointer;
+}
+
+.profile-detail-right input {
+    margin-top: 5px;
+    display: none;
+    width: 100%;
+    padding: 6px 10px;
+    display: inline-flex;
 }
 
 .profile-detail-right button i {
@@ -949,7 +973,6 @@ button.btnDelete {
     animation: pulse 2s infinite;
     /* Apply the animation */
 }
-
 
 /* ----- Media query ----- */
 @media (max-width: 900px) {
