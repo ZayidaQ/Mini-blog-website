@@ -21,6 +21,7 @@
     --right-event: #fff;
     --right-sidebar: #efefef;
     --settings-menu: #fff;
+    --hashtag-color: #EEBC27;
 }
 
 .dark-theme {
@@ -29,9 +30,10 @@
     --bg-color: #3c3c3d;
     --text-color: #FAF6EE;
     --text-body-color: #313134;
-    --right-event: #1e1e1e;
+    --right-event: #272727;
     --right-sidebar: #3c3c3d;
     --settings-menu: #2c2c2c;
+    --hashtag-color: #F0D18F;
 }
 
 body {
@@ -664,7 +666,7 @@ nav {
 }
 
 .profile-details {
-    background: #fff;
+    background: var(--right-event);
     padding: 20px;
     border-radius: 10px;
     display: flex;
@@ -686,6 +688,7 @@ nav {
 .profile-detail-row div h3 {
     font-size: 25px;
     font-weight: 600;
+    color: var(--text-color);
 }
 
 .profile-detail-row div p {
@@ -739,7 +742,7 @@ nav {
 }
 
 .profile-intro {
-    background: #fff;
+    background: var(--settings-menu);
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -747,6 +750,7 @@ nav {
 
 .profile-intro h3 {
     font-weight: 600;
+    color: var(--text-color);
 }
 
 .bio-text {
@@ -767,6 +771,7 @@ nav {
     margin: 15px 0;
     display: flex;
     align-items: center;
+    color: var(--text-color);
 }
 
 .profile-intro ul li i {
@@ -800,6 +805,7 @@ nav {
 
 .profile-intro p {
     font-size: 14px;
+    color: var(--hashtag-color);
 }
 
 /*----- Friends Box ----- */
