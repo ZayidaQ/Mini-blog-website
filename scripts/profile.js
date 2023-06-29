@@ -80,7 +80,7 @@ function displayPost() {
       // to display post on screen 
       currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       console.log(currentUserPosts)
-      const displayPost = document.querySelector("#displayPosts")
+      const displayPost = document.querySelector("#recentPost")
 
       const randomNumber = Math.floor(Math.random() * 150);
       const randomRepost = Math.floor(Math.random() * 40);
