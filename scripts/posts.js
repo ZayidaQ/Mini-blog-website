@@ -221,7 +221,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID,
 
                 <div class="post-activity">
                     <div>
-                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
+                        <img src="../img/main-user.png" alt="" class="post-activity-user-icon">
                     </div>
                     ${isLiked}    
                     <div class="post-activity-link">
@@ -229,7 +229,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID,
                         <span>Comment</span>
                     </div>
                     <div class="post-activity-link">
-                        <i class="fas fa-share" ${ownPost}></i>
+                        <i class="fas fa-share"></i>
                         <span>Share</span>
                     </div>
                     <div class="post-activity-link">

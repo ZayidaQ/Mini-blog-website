@@ -148,10 +148,8 @@ function displayPost() {
 
                 <div class="post-activity">
                     <div>
-                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
+                        <img src="../img/main-user.png" alt="" class="post-activity-user-icon">
                     </div>
-                   
-                    
                     <div class="post-activity-link">
                         <i class="fas fa-comment"></i>
                         <span>Comment</span>
@@ -163,6 +161,10 @@ function displayPost() {
                     <div class="post-activity-link">
                         <i class="fas fa-paper-plane"></i>
                         <span>Send</span>
+                    </div>
+                    <div class="post-activity-link">
+                      <i class="fas fa-trash" style="color: #df4e4e;"></i></i>
+                        <span>Trash</span>
                     </div>
 
                 </div>
