@@ -32,6 +32,37 @@ formCreatePost.onsubmit = function (event) {
   createPost();
 }
 
+// Function for user to edit bio
+
+function getbio() {
+  fetch(`https://microbloglite.herokuapp.com/api/users?username=${currentUser}`, {
+    method: "GET", 
+    headers: {
+      "Authorization": `Bearer ${loginData.token}`,
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Error retrieving data from the API");
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Access the 'about' property within the 'user' object
+    const about = data.user.bio;
+    
+    // Use the 'about' value as needed
+    console.log(about);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+getbio()
+
+
 
 // Function to display posts from current user 
 function displayPost() {
@@ -49,7 +80,7 @@ function displayPost() {
       // to display post on screen 
       currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       console.log(currentUserPosts)
-      const displayPost = document.querySelector("#displayPosts")
+      const displayPost = document.querySelector("#recentPost")
 
       const randomNumber = Math.floor(Math.random() * 150);
       const randomRepost = Math.floor(Math.random() * 40);
@@ -83,13 +114,14 @@ function displayPost() {
                     <div>
                         <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
                     </div>
-                    ${isLiked}    
+                   
+                    
                     <div class="post-activity-link">
                         <i class="fas fa-comment"></i>
                         <span>Comment</span>
                     </div>
                     <div class="post-activity-link">
-                        <i class="fas fa-share" ${ownPost}></i>
+                        <i class="fas fa-share" ></i>
                         <span>Share</span>
                     </div>
                     <div class="post-activity-link">
@@ -162,7 +194,7 @@ async function onDropdownSort() {
       if (bearerToken.username == post.username) {
         isPostOwner = true;
       }
-      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
+      displayPost(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
     })
   }
   catch (error) {
