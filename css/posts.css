@@ -39,6 +39,7 @@
 body {
     background: var(--body-color);
     transition: background 0.3s;
+    min-height: 100vh;  
 }
 
 html {
@@ -347,6 +348,7 @@ nav {
 /* ---------- Main-content ---------- */
 .main-content {
     flex-basis: 47%;
+    max-width: 47%; /*come back to this*/
 }
 
 .create-post {
