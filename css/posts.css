@@ -53,8 +53,8 @@ html {
     z-index: 100;
     width: 100%;
     height: 100%;
-    background-color: #ADC178;
-    background-image: url("https://media1.giphy.com/media/2yun3jDQy1wOg5l07Y/200w.webp");
+    background-color: #d0d7bd;
+    background-image: url("../img/loading.gif");
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -787,9 +787,14 @@ nav {
     color: var(--text-color);
 }
 
-.bio-text {
+.profile-intro h3.bioTitle {
+    color: var(--hashtag-color);
+}
+
+.profile-intro p.bio-text {
     margin: 10px 0;
     font-size: 15px;
+    color: var(--text-color);
 }
 
 .profile-intro hr {
