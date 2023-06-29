@@ -118,6 +118,7 @@ function displayPost() {
       currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       console.log(currentUserPosts)
       const displayPost = document.querySelector("#recentPost")
+      const displayPost = document.querySelector("#recentPost")
 
       const randomNumber = Math.floor(Math.random() * 150);
       const randomRepost = Math.floor(Math.random() * 40);
@@ -244,14 +245,9 @@ async function onDropdownSort() {
   }
 }
 
-
-// This is for the seetings menu
+// side menu to work
 const settingsMenu = document.querySelector(".settings-menu");
 const darkBtn = document.getElementById("dark-btn")
-
-document.getElementById("myIcon").addEventListener("click", function() {
-  this.classList.toggle("clicked");
-});
 
 function settingsMenuToggle() {
   settingsMenu.classList.toggle("settings-menu-height");
@@ -261,7 +257,7 @@ darkBtn.onclick = function () {
   darkBtn.classList.toggle("dark-btn-on");
   document.body.classList.toggle("dark-theme");
 
-  if (localStorage.getItem("theme") == "light"){
+  if (localStorage.getItem("theme") == "light") {
     localStorage.setItem("theme", "dark");
   }
   else {
@@ -281,4 +277,3 @@ else if (localStorage.getItem("theme") == "dark") {
 else {
   localStorage.setItem("theme", "light");
 }
-
