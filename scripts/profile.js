@@ -159,7 +159,6 @@ function displayPost() {
                     </div>
                     <div class="post-activity-link">
                         <i class="fas fa-share" ></i>
-                        <i class="fas fa-share" ></i>
                         <span>Share</span>
                     </div>
                     <div class="post-activity-link">
