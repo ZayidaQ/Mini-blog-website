@@ -639,3 +639,19 @@ nav {
     background: #ccc;
     color: #000;
 }
+
+.profile-info {
+    display: flex;
+    align-self: flex-start;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.info-col {
+    flex-basis: 33%;
+}
+
+.post-col {
+    flex-basis: 65%;
+    margin-right: 15%;
+}

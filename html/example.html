@@ -28,7 +28,8 @@
     <nav>
         <!-- Navigation bar left, which includes logos and couple icons-->
         <div class="nav-left">
-            <a href="posts.html" class="logo"><img src="../img/logo.png" alt="" class="logo"></a> <!-- Change this later-->
+            <a href="posts.html" class="logo"><img src="../img/logo.png" alt="" class="logo"></a>
+            <!-- Change this later-->
         </div>
         <!-- Navigation -->
         <div class="nav-right">
@@ -45,7 +46,7 @@
         <div class="settings-menu">
 
             <!-- Button for switching colors -->
-            <div id="dark-btn" >
+            <div id="dark-btn">
                 <span></span>
             </div>
 
@@ -125,7 +126,32 @@
     <div class="profile-info">
         <div class="info-col"></div>
         <div class="post-col">
-            
+            <form id="formCreatePost">
+                <div class="create-post" id="formCreatePost">
+                    <div class="create-post-input">
+                        <img src="../img/user-1.JPG">
+                        <textarea id="textBoxPost" rows="2" cols="40" placeholder="Write a post"></textarea>
+                    </div>
+                    <div class="create-post-links">
+                        <li><i class="fas fa-image" style="color: #EEBC27;"></i>Photo</li>
+                        <li><i class="fas fa-film" style="color: #EEBC27;"></i> Video</li>
+                        <li><i class="fas fa-calendar-plus" style="color: #EEBC27;"></i> Event</li>
+                        <li><button id="btnSubmit" type="submit" class="btn btn-primary">Post</button></li>
+                    </div>
+                </div>
+            </form>
+
+            <div>
+                <select id="dropdownSortPosts" class="form-select">
+                    <option value="new">New</option>
+                    <option value="popular">Popular</option>
+                    <option value="username">User</option>
+                </select>
+            </div>
+
+            <div class="display-container" id="displayPosts"></div>
+            <button type="button" class="btnScrollToTop"
+                onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Up</button>
         </div>
     </div>
 
