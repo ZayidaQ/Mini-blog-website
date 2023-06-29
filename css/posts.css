@@ -793,6 +793,10 @@ nav {
     font-size: 14px;
 }
 
+.title-box a:hover {
+    border-bottom: 1px solid #ccc;
+}
+
 .photo-box {
     display: grid;
     grid-template-columns: repeat(3, auto);
