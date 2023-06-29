@@ -14,17 +14,50 @@ const bioText = document.querySelector(".bio-text")
 const loginData = getLoginData()
 const currentUser = (loginData).username
 
+const inputBio = document.querySelector("#inputBio");
+const btnEdit = document.querySelector("#btnEdit");
+const btnSave = document.querySelector("#btnSave");
+
 
 // when page loads
 window.onload = () => {
   dropdownSortPosts.value = "new";
   onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
+  getbio();
 }
 
 // logout button
 btnLogOut.onclick = () => {
   logout();
+}
+
+btnEdit.onclick = () => {
+  inputBio.style.display = "block";
+  btnSave.style.display = "block";
+  btnEdit.style.display = "none";
+}
+
+btnSave.onclick = () => {
+  inputBio.style.display = "none";
+  btnSave.style.display = "none";
+  btnEdit.style.display = "block";
+
+  fetch(`https://microbloglite.herokuapp.com/api/users/${loginData.username}`, {
+      method: 'PUT',
+      headers: {
+          'accept': 'application/json',
+          'Authorization': `Bearer ${loginData.token}`,
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          'bio': inputBio.value
+      })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data));
+  alert("Your new bio was saved.");
+  location.reload();
 }
 
 // when button is clicked
@@ -55,7 +88,7 @@ const currentUser = (loginData).username
     // Access the 'about' property within the 'user' object
     const about = data.bio;
     //To display bio on website
-    bioText.innerHTML = about
+    bioText.innerHTML = about;
     // Use the 'about' value as needed
     console.log (about);
   })
@@ -64,7 +97,6 @@ const currentUser = (loginData).username
   });
 }
 
-getbio()
 
 //function updateBio() {
 //   const loginData = getLoginData()
@@ -117,7 +149,6 @@ function displayPost() {
       // to display post on screen 
       currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       console.log(currentUserPosts)
-      const displayPost = document.querySelector("#recentPost")
       const displayPost = document.querySelector("#recentPost")
 
       const randomNumber = Math.floor(Math.random() * 150);

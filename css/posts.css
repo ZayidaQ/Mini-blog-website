@@ -508,6 +508,14 @@ nav {
     margin-right: 8px;
 }
 
+#inputBio{
+    display: none;
+}
+
+#btnSave{
+    display: none;
+}
+
 /* user profile css */
 .user-profile {
     display: flex;
