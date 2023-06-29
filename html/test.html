@@ -1,26 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Image Upload Example</title>
+  <title>Image Uploader</title>
   <style>
-    #image-preview {
-      max-width: 200px;
-      max-height: 200px;
+    .image-input {
+      width: 100%;
+    }
+
+    .image-preview {
+      max-width: 100%;
+      height: auto;
       margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Image Upload Example</h1>
-  
-  <form id="upload-form">
-    <input type="file" id="file-input">
-    <div id="image-preview"></div>
-    <input type="text" id="caption-input" placeholder="Enter caption">
-    <button type="submit">Post</button>
-  </form>
+  <h1>Image Uploader</h1>
 
-  <script src="../scripts/test.js"></script>
+  <input type="text" id="image-url" placeholder="Enter image URL" class="image-input">
+  <br>
+  <img id="image-preview" class="image-preview" src="">
+  <br>
+  <button onclick="postImage()">Post</button>
+
+  <script>
+    function postImage() {
+      var imageUrl = document.getElementById("image-url").value;
+      if (imageUrl !== "") {
+        var img = document.createElement("img");
+        img.src = imageUrl;
+        img.classList.add("image-preview");
+        document.body.appendChild(img);
+      }
+    }
+
+    document.getElementById("image-url").addEventListener("input", function () {
+      var imageUrl = document.getElementById("image-url").value;
+      var imagePreview = document.getElementById("image-preview");
+      imagePreview.src = imageUrl;
+    });
+  </script>
 </body>
 </html>
-
