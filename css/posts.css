@@ -879,6 +879,9 @@ nav {
 button.btnDelete {
     border: none;
     background-color: transparent;
+    position: absolute;
+    right: 8px;
+    top: 5px;
 }
 
 /* ----- Scroll to Top button ----- */
