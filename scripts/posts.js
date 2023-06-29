@@ -199,13 +199,16 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID,
       displayPosts.innerHTML += 
       `
       <div class="post">
+                
                 <div class="post-author">
+                  
                     <img src="../img/OrangeUser.jpeg" alt="Default user">
                     <div>
                         <h1>${_username}</h1>
                         <small>${_date} </small>
                     </div>
                 </div>
+                <i class="fas fa-trash trash" style="color: #df4e4e;"></i>
                 <p>
                 ${_text}
                 </p>

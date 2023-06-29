@@ -384,6 +384,7 @@ nav {
     padding: 20px 25px 5px;
     margin: 5px 0 15px;
     border-radius: 15px;
+    position: relative;
 }
 
 .post-author {
@@ -414,6 +415,12 @@ nav {
     font-size: 14px;
     background-color: #FAF6EE;
     padding: 20px;
+}
+
+.post i.trash {
+    position: absolute;
+    top: 30px;
+    right: 30px;
 }
 
 .post-stats {
