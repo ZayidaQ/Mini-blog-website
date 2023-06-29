@@ -11,13 +11,46 @@ const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
 const newPost = document.querySelector("#textBoxPost");
 const allBtnDelete = document.getElementsByClassName("btnDelete");
 const allBtnLike = document.getElementsByClassName("btnLike");
+const btnSubmit = document.querySelector("#btnSubmit");
+const btnScrollToTop = document.querySelector(".btnScrollToTop");
 
 // when page loads
 window.onload = () => {
   dropdownSortPosts.value = "new";
-  checkLikes(bearerToken.username);
-  onDropdownSort(); //change to check post like status onload
+  onDropdownSort();
   dropdownSortPosts.onchange = onDropdownSort;
+}
+
+const wait = (delay = 0) =>
+new Promise(resolve => setTimeout(resolve, delay));
+
+const setVisible = (elementOrSelector, visible) => 
+(typeof elementOrSelector === 'string'
+    ? document.querySelector(elementOrSelector)
+    : elementOrSelector
+).style.display = visible ? 'block' : 'none';
+
+setVisible('.page', false);
+setVisible('#loading', true);
+
+document.addEventListener('DOMContentLoaded', () =>
+wait(1000).then(() => {
+    setVisible('.page', true);
+    setVisible('#loading', false);
+}));
+
+// Show or hide button that scrolls to the top of page
+window.onscroll = () => {
+  scrollFunction();
+}
+
+const scrollFunction = () => {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      btnScrollToTop.style.display = "block";
+  } 
+  else {
+      btnScrollToTop.style.display = "none";
+  }
 }
 
 // logout button
@@ -26,7 +59,7 @@ btnLogOut.onclick = () => {
 }
 
 // when button is clicked, create a post using value from form
-formCreatePost.onsubmit = function(event) {
+btnSubmit.onclick = function(event) {
   event.preventDefault();
   createPost(newPost.value);
 }
@@ -58,8 +91,9 @@ async function createPost(_content) {
 //function to sort posts onchange of dropdown select
 async function onDropdownSort() {
   displayPosts.innerHTML = "";
+  let unlikeID = "";
   try{
-    const response = await fetch(`${apiBaseURL}/api/posts`,
+    const response = await fetch(`${apiBaseURL}/api/posts?limit=1000&offset=0`,
     {
       method: 'GET',
       headers: {
@@ -84,8 +118,16 @@ async function onDropdownSort() {
       if(bearerToken.username == post.username){
         isPostOwner = true;
       }
-      //
-      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
+      //check if liked or not
+      let isLiked = false;
+      post.likes.forEach(like => {
+        if(like.username == bearerToken.username){
+          isLiked = true;
+          unlikeID = like._id;
+        }
+      })
+      //call function to display each post
+      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id, isLiked, unlikeID);
     })
   }
   catch(error) {
@@ -95,24 +137,23 @@ async function onDropdownSort() {
   console.log(allBtnLike.length); //remove later
 
   // like a post when clicked
-  // for(let i = 0; i < allBtnDelete.length; i++){
-  //   allBtnLike[i].onclick = () => {
-  //     if(likePost == true){
-  //       allBtnLike[i].textContent = "Like";
-  //       console.log("unliked");
-  //     }
-  //     else{
-  //       likePost(allBtnLike[i].id);
-  //       allBtnLike[i].textContent = "Dislike"
-  //       console.log("liked");
-  //     }
-  //   }
-  // }
+  for(let i = 0; i < allBtnLike.length; i++){
+    allBtnLike[i].onclick = () => {
+      if(allBtnLike[i].dataset.value == "Unliked"){
+        allBtnLike[i].className += " clicked";
+        likePost(allBtnLike[i].id);
+      }
+      else if(allBtnLike[i].dataset.value == "Liked"){
+        allBtnLike[i].classList.remove("clicked");
+        unlikePost(allBtnLike[i].id);
+      }
+    }
+  }
 
   // delete post when clicked
   for(let i = 0; i < allBtnDelete.length; i++){
     allBtnDelete[i].onclick = () => {
-      let text = "Are you sure you want to delete your post?"
+      let text = "Are you sure you want to DELETE your post?"
       if(confirm(text) == true){
         deletePost(allBtnDelete[i].id);
         alert("Post deleted succesfully.");
@@ -122,34 +163,15 @@ async function onDropdownSort() {
   }
 }
 
-//check post if all liked posts
-async function checkLikes(_username) {
-  let likeList = [];
-  try {
-    const response = await fetch(`${apiBaseURL}/api/posts`,
-    {
-      method: 'GET',
-      headers: {
-        "Authorization": "Bearer " + bearerToken.token},
-    });
-    const data = response.json();
-    let newData = Object.values(data);
-    newData.forEach(post => {
-      post.likes.forEach(like => {
-        if(like.username == _username){
-          likeList.push(post);
-        }
-      })
-    })
-    localStorage.setItem("myLikes", likeList);
-  }
-  catch(error) {
-    console.log(error);
-  }
+// This is for generatig random number
+function getRandomInteger(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 // function for displaying all posts
-function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID) {
+function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID, _isLiked, _unlikeID) {
       let ownPost = ""; //check if post owner so delete button appears
       if(_ownPost){
         ownPost = `<button type="button" class="btn btn-danger float-end btnDelete" id="${_valueID}"><i class="bi bi-trash-fill"></i></button>`;
@@ -157,14 +179,30 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
       else{
         ownPost = "";
       }
+
+      //check if post is liked or not to display appropriate button
+      let isLiked = "";
+      if(_isLiked){
+        isLiked = `<div class="post-activity-link btnLike clicked" id="${_unlikeID}" data-value="Liked">
+                    <i class="fas fa-heart"></i><span>Unlike</span>
+                  </div>`;
+      }
+      else{
+        isLiked = `<div class="post-activity-link btnLike" id="${_valueID}" data-value="Unliked">
+                    <i class="fas fa-heart"></i><span>Like</span>
+                  </div>`;
+      }
+
+      const randomNumber = Math.floor(Math.random() * 150);
+      const randomRepost = Math.floor(Math.random() * 40);
+
       displayPosts.innerHTML += 
       `
       <div class="post">
                 <div class="post-author">
-                    <img src="../img/shortcut-1.png" alt="">
+                    <img src="../img/OrangeUser.jpeg" alt="Default user">
                     <div>
                         <h1>${_username}</h1>
-                        <small>Lorem ipsum dolor sit amet consectetur adipisicing elit.</small>
                         <small>${_date} </small>
                     </div>
                 </div>
@@ -174,11 +212,10 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
 
                 <div class="post-stats">
                     <div>
-                        <i class="fas fa-heart" style="color: #ef4f4f;"></i>
                         <span class="liked-users"> ${_numLikes} likes </span>
                     </div>
                     <div>
-                        <span>29 comments || 47 Repost </span>
+                        <span> ${randomNumber} comments || ${randomRepost} Repost </span>
                     </div>
                 </div>
 
@@ -186,10 +223,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID)
                     <div>
                         <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
                     </div>
-                    <div class="post-activity-link">
-                        <i class="far fa-heart" id="${_valueID}"></i></i>
-                        <span>Like</span>
-                    </div>
+                    ${isLiked}    
                     <div class="post-activity-link">
                         <i class="fas fa-comment"></i>
                         <span>Comment</span>
@@ -224,7 +258,7 @@ async function likePost(_postID) {
     const data = await response.json();
     console.log(data);
     console.log("Post liked."); //test
-    // location.reload();
+    location.reload();
   }
   catch(error) {
     console.log(error);
@@ -232,16 +266,17 @@ async function likePost(_postID) {
 }
 
 // unlike post function
-async function unlikePost(_post) {
+async function unlikePost(_postID) {
   try {
-    const response = await fetch(`${apiBaseURL}/api/likes/${_likeID}`, {
+    const response = await fetch(`${apiBaseURL}/api/likes/${_postID}`, {
     method: 'DELETE',
     headers: {
       'accept': 'application/json',
       'Authorization': "Bearer " + bearerToken.token}
     });
-    const data = response.json();
+    const data = await response.json();
     console.log(data); //test
+    location.reload();
   }
   catch(error) {
     console.log(error);

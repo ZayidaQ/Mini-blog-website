@@ -1,8 +1,10 @@
+<!-- go back and add alt for all the img -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>post</title>
+    <title>BeeChat</title>
+    <title>BeeChat</title>
 
     <!-- Required meta tags -->
     <meta charset="UTF-8">
@@ -10,20 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Font awesome link -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-    <!-- Bootstrap CSS v5.3.0 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 
     <!-- Link to custom style sheet -->
-    <link rel="stylesheet" href="/css/posts.css">
+    <link rel="stylesheet" href="../css/posts.css">
 
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="/scripts/auth.js"></script>
@@ -33,119 +25,233 @@
 </head>
 
 <body>
-
-    <nav class="navbar">
-        <div class="navbar-left">
-            <a href="index.html" class="logo"><img src="images/logo.png"></a>
-
-            <div class="search-box">
-                <img src="../img/search.png">
-                <input type="text" placeholder="Search">
+    <div class="page">
+        <nav>
+            <!-- Navigation bar left, which includes logos and couple icons-->
+            <div class="nav-left">
+                <a href="posts.html" class="logo"><img src="../img/logo.png" alt="" class="logo"></a>
+                <!-- Change this later-->
             </div>
-        </div>
-        <div class="navbar-center">
-            <ul>
-                <li><a href="#" class="active-link"><img src="../img/home.png"> <span>Home</span></a></li>
-                <li><a href="#"><img src="../img/network.png"> <span>My Network</span></a></li>
-                <li><a href="#"><img src="../img/jobs.png"> <span>Jobs</span></a></li>
-                <li><a href="#"><img src="../img/message.png"> <span>Messaging</span></a></li>
-                <li><a href="#"><img src="../img/notification.png"> <span>Notifications</span></a></li>
-            </ul>
-        </div>
+            <!-- Navigation -->
+            <div class="nav-right">
 
-        <div class="navbar-right">
-            <div class="online">
-                <img src="../img/user-1.JPG" class="nav-profile-img" onclick="toggleMenu()">
+                <div class="search-box">
+                    <img src="../img/search.png" alt="">
+                    <input type="text" placeholder="Search">
+                </div>
+                <div class="nav-user-icon online" onclick="settingsMenuToggle()">
+                    <img src="../img/user-1.JPG" alt="profile picture">
+                </div>
             </div>
-        </div>
-        <!-- --------------- profile-drop-down-menu---------- -->
-        <div class="profile-menu-wrap" id="profileMenu">
-            <div class="profile-menu">
-                <div class="user-info">
-                    <img src="../img/user-1.JPG">
-                    <div>
-                        <a href="profile.html">
-                            <h3>Kaye Poblete</h3>
-                        </a>
+            <!-- Seetings menu -->
+            <div class="settings-menu">
+
+                <!-- Button for switching colors -->
+                <div id="dark-btn">
+                    <span></span>
+                </div>
+
+                <div class="settings-menu-inner">
+                    <div class="user-profile">
+                        <img src="../img/user-1.JPG" alt="">
+                        <div>
+                            <p> Zayida </p>
+                            <a href="../html/profile.html">See your profile</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="user-profile">
+                        <i class="fas fa-user-friends" style="color: #EEBC27;"></i>
+                        <div>
+                            <p>Switch Account</p>
+                            <a href="#">Toggle between your alter egos</a>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <!-- Seetings links -->
+                    <div class="settings-links">
+                        <i class="fas fa-cog setting-icon settings-icon" style="color: #EEBC27;"></i>
+                        <a href="#">Settings & Privacy <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                    </div>
+                    <div class="settings-links">
+                        <i class="fas fa-globe setting-icon settings-icon" style="color: #EEBC27;"></i>
+                        <a href="#">Language <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                    </div>
+                    <div class="settings-links">
+                        <i class="fas fa-question-circle settings-icon" style="color: #EEBC27;"></i>
+                        <a href="#">Help & Support <i class="fas fa-arrow-right" style="font-size: 10px;"></i></a>
+                    </div>
+                    <div class="settings-links">
+                        <i class="fas fa-moon settings-icon" style="color: #EEBC27;"></i>
+                        <a href="#">Display & Accessability <i class="fas fa-arrow-right"
+                                style="font-size: 10px;"></i></a>
+                    </div>
+                    <div class="settings-links">
+                        <i class="fas fa-sign-out-alt settings-icon" style="color: #EEBC27;"></i>
+                        <a href="#" id="btnLogOut">Logout <i class="fas fa-arrow-right"
+                                style="font-size: 10px;"></i></a>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </nav>
+
+        <div class="container">
+            <!-- Left sidebar -->
+            <div class="left-sidebar">
+                <div class="imp-links">
+                    <!-- List of links on the left side bar -->
+                    <a href="#">
+                        <i class="fas fa-home" style="color: #EEBC27;"></i>
+                        Explore
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-comments" style="color: #EEBC27;"></i>
+                        Messages
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-bell" style="color: #EEBC27;"></i>
+                        Notification
+                    </a>
+                    <a href="#">
+                        <i class="fas fa-user-plus" style="color: #EEBC27;"></i>
+                        Find Friends
+                    </a>
+                    <a href="#">
+                        see more
+                    </a>
+                </div>
+
+                <div class="shortcut-links">
+                    <p><i class="fas fa-users" style="color: #EEBC27;"></i> Group-Chats</p>
+                    <a href="#"><img src="../img/shortcut-1.png" alt=""> Tech-Titans</a>
+                    <a href="#"><img src="../img/shortcut-1.png" alt=""> Busy Bees 🐝 </a>
+                    <a href="#"><img src="../img/shortcut-1.png" alt=""> The Ha-Ha Crew</a>
+                    <a href="#"><img src="../img/shortcut-1.png" alt=""> Bay-area 🐀</a>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="main-content">
+                <form id="formCreatePost">
+                    <div class="create-post" id="formCreatePost">
+                        <div class="create-post-input">
+                            <img src="../img/user-1.JPG">
+                            <textarea id="textBoxPost" rows="2" cols="40" placeholder="Write a post"></textarea>
+                        </div>
+                        <div class="create-post-links">
+                            <li><i class="fas fa-image" style="color: #EEBC27;"></i>Photo</li>
+                            <li><i class="fas fa-film" style="color: #EEBC27;"></i> Video</li>
+                            <li><i class="fas fa-calendar-plus" style="color: #EEBC27;"></i> Event</li>
+                            <li><button id="btnSubmit" type="submit" class="btn btn-primary">Post</button></li>
+                        </div>
+                    </div>
+                </form>
+
+                <div>
+                    <select id="dropdownSortPosts" class="form-select">
+                        <option value="new">New</option>
+                        <option value="popular">Popular</option>
+                        <option value="username">User</option>
+                    </select>
+                </div>
+
+                <div class="display-container" id="displayPosts"></div>
+
+            </div>
+
+            <!-- Rigt sidebar -->
+            <div class="right-sidebar">
+                <div class="sidebar-title">
+                    <h4>Event Reminders</h4>
+                    <a href="#">See All</a>
+                </div>
+
+                <!-- Event list -->
+                <div class="event">
+                    <div class="left-event">
+                        <h3>28</h3>
+                        <span>April</span>
+                    </div>
+                    <div class="right-event">
+                        <h4>Aflak's Birthday! 🎉</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Fisherman's Wharf, SF</p>
+                        <a href="#">More Info</a>
                     </div>
                 </div>
-                <hr>
-                <a href="#" class="profile-menu-link">
-                    <img src="../img/feedback.png">
-                    <p>Give Feedback</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="../img/setting.png">
-                    <p>Settings & Privacy</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="../img/help.png">
-                    <p>Help & Support</p>
-                    <span>></span>
-                </a>
-                <a href="#" class="profile-menu-link">
-                    <img src="../img/display.png">
-                    <p>Display & Accessiblity</p>
-                    <span>></span>
-                </a>
-                <a href="#" id="btnLogOut" class="profile-menu-link">
-                    <img src="../img/logout.png">
-                    <p>Logout</p>
-                    <span>></span>
-                </a>
-            </div>
-        </div>
-
-    </nav>
-
-    <!-- -------------- navbar close-------- -->
-
-    <!-- Main Content -->
-    <main>
-        <!-- div for Creating a new post section -->
-        <div class="container">
-            <form id="formCreatePost">
-
-                <div class="container">
-                    <label for="textBoxPost" class="form-label">New Post: </label>
-                    <textarea id="textBoxPost" class="form-control" cols="40" rows="4"></textarea>
-                    <!-- Button to submit form -->
-                    <button id="btnSubmit" type="submit" class="btn btn-primary">Post</button>
+                <div class="event">
+                    <div class="left-event">
+                        <h3>20</h3>
+                        <span>June</span>
+                    </div>
+                    <div class="right-event">
+                        <h4>Ari's Birthday! 🎂</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Alcatraz Island, SF</p>
+                        <a href="#">More Info</a>
+                    </div>
                 </div>
-            </form>
+                <div class="event">
+                    <div class="left-event">
+                        <h3>18</h3>
+                        <span>July</span>
+                    </div>
+                    <div class="right-event">
+                        <h4>Team Meet Up 🍹</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Cable Car Museum, SF</p>
+                        <a href="#">More Info</a>
+                    </div>
+                </div>
+
+                <!-- Second section of right sidebar -->
+                <div class="sidebar-title">
+                    <h4><i class="fas fa-ad" style="color: #EEBC27;"></i> Advertisement</h4>
+                    <a href="#">Close</a>
+                </div>
+                <img src="../img/michael.jpg" alt="pretty girl" class="sidebar-ads">
+
+
+                <div class="sidebar-title">
+                    <h4><i class="fas fa-history" style="color: #EEBC27;"></i> Recent Conversation</h4>
+                    <a href="#">Hide Chat</a>
+                </div>
+
+                <!-- list of users -->
+                <div class="online-list">
+                    <div class="online">
+                        <img src="../img/shortcut-1.png" alt="">
+                    </div>
+                    <p>Jonathan Carpio</p>
+                </div>
+                <div class="online-list">
+                    <div class="online">
+                        <img src="../img/shortcut-1.png" alt="">
+                    </div>
+                    <p>Jonathan Carpio</p>
+                </div>
+                <div class="online-list">
+                    <div class="online">
+                        <img src="../img/shortcut-1.png" alt="">
+                    </div>
+                    <p>Jonathan Carpio</p>
+                </div>
+            </div>
         </div>
 
-        <!-- div for Displaying Posts section -->
-        <div class="container">
-            <!-- div for Sort dropdown -->
-            <div>
-                <label for="dropdownSortPosts" class="form-label">Sort By:</label>
-                <select id="dropdownSortPosts" class="form-select">
-                    <option value="new">New</option>
-                    <option value="popular">Popular</option>
-                    <option value="username">User</option>
-                </select>
-            </div>
+        <!-- Scroll to the top button -->
+        <button type="button" class="btnScrollToTop"
+            onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Up</button>
 
-            <!-- div where posts are displayed -->
-            <div class="container" id="displayPosts">
-
-            </div>
+        <div class="footer">
+            <p> Copyright 2023 - BusyBees </p>
         </div>
-    </main>
+    </div>
 
-    <!-- Font awesome js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <div id="loading"></div>
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"></script>
-
-    <!-- Page-specific code -->
-    <script src="/scripts/posts.js"></script>
+    <script src="../scripts/posts.js"></script>
 </body>
 
 </html>

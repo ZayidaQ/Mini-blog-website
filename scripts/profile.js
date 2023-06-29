@@ -12,7 +12,7 @@ const allBtnDelete = document.getElementsByClassName("btnDelete");
 //specific user variables
 const loginData = getLoginData()
 const currentUser = (loginData).username
- 
+
 
 // when page loads
 window.onload = () => {
@@ -27,7 +27,7 @@ btnLogOut.onclick = () => {
 }
 
 // when button is clicked
-formCreatePost.onsubmit = function(event) {
+formCreatePost.onsubmit = function (event) {
   event.preventDefault();
   createPost();
 }
@@ -65,42 +65,77 @@ getbio()
 
 
 // Function to display posts from current user 
-function displayPost () {
+function displayPost() {
   fetch(`https://microbloglite.herokuapp.com/api/posts?username=${currentUser}`, {
-    method: "GET", 
-    headers: {"Authorization": `Bearer ${loginData.token}`,
-            "Content-type":
-            "application/json; charset=UTF-8"}
-})
-.then(response => response.json())
-.then(data => {
-  let currentUserPosts = data.filter(post => post.username === currentUser);
-// to display post on screen 
-        currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-    console.log(currentUserPosts)
-    const displayPost = document.querySelector("#displayPosts")
-    let str = '';
-     for (const post of currentUserPosts) {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${loginData.token}`,
+      "Content-type":
+        "application/json; charset=UTF-8"
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      let currentUserPosts = data.filter(post => post.username === currentUser);
+      // to display post on screen 
+      currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      console.log(currentUserPosts)
+      const displayPost = document.querySelector("#displayPosts")
 
-      str += `
-      <div class="card" style="width: 18rem;">
-    
-    <div class="card-body">
-      <h5 class="card-title">Username:${post.username}</h5>
-      <p class="card-text">Post: ${post.text}</p>
-      <p class="card-text">Time: ${post.createdAt}</p>
-      <p class="card-text">Likes: ${post.likes.length}</p>
+      const randomNumber = Math.floor(Math.random() * 150);
+      const randomRepost = Math.floor(Math.random() * 40);
 
-      <a href="#" class="btn btn-primary">More</a>
-    </div>
-  </div>
-      <br>
+      let str = '';
+      for (const post of currentUserPosts) {
+
+        str += `
+      <div class="post">
+                <div class="post-author">
+                    <img src="../img/OrangeUser.jpeg" alt="Default user">
+                    <div>
+                        <h1>${post.username}</h1>
+                        <small>${post.createdAt} </small>
+                    </div>
+                </div>
+                <p>
+                ${post.text}
+                </p>
+
+                <div class="post-stats">
+                    <div>
+                        <span class="liked-users"> ${post.likes.length} likes </span>
+                    </div>
+                    <div>
+                        <span> ${randomNumber} comments || ${randomRepost} Repost </span>
+                    </div>
+                </div>
+
+                <div class="post-activity">
+                    <div>
+                        <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
+                    </div>
+                    ${isLiked}    
+                    <div class="post-activity-link">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-share" ${ownPost}></i>
+                        <span>Share</span>
+                    </div>
+                    <div class="post-activity-link">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send</span>
+                    </div>
+
+                </div>
+            </div>
       `
       }
       displayPost.innerHTML = str;
- 
-      });
-    } 
+
+    });
+}
 displayPost()
 
 // function for creating a new post
@@ -108,20 +143,21 @@ async function createPost() {
   const newPost = document.querySelector("#textBoxPost").value;
   try {
     const response = await fetch(`${apiBaseURL}/api/posts`,
-    {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "Authorization": "Bearer " + bearerToken.token},
-      body: JSON.stringify({
-        "text": newPost
-      }),
-      redirect: 'follow',
-    });
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": "Bearer " + bearerToken.token
+        },
+        body: JSON.stringify({
+          "text": newPost
+        }),
+        redirect: 'follow',
+      });
     const data = await response.json();
     console.log('data:', data);  //test
   }
-  catch(error) {
+  catch (error) {
     console.log(error);
   }
   location.reload();
@@ -130,36 +166,37 @@ async function createPost() {
 //function to sort onchange of dropdown select
 async function onDropdownSort() {
   displayPosts.innerHTML = "";
-  try{
+  try {
     const response = await fetch(`${apiBaseURL}/api/posts`,
-    {
-      method: 'GET',
-      headers: {
-        "Authorization": "Bearer " + bearerToken.token},
-    });
+      {
+        method: 'GET',
+        headers: {
+          "Authorization": "Bearer " + bearerToken.token
+        },
+      });
     const data = await response.json();
     let newData = Object.values(data);
     // console.log(newData); //test
-    if(dropdownSortPosts.value == "new") {
+    if (dropdownSortPosts.value == "new") {
       newData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     }
-    else if(dropdownSortPosts.value == "popular") {
+    else if (dropdownSortPosts.value == "popular") {
       newData.sort((a, b) => b.likes.length - a.likes.length);
     }
-    else if(dropdownSortPosts.value == "username") {
+    else if (dropdownSortPosts.value == "username") {
       newData.sort((a, b) => b.username.toLowerCase() > a.username.toLowerCase() ? -1 : 1);
     }
     newData.forEach(post => {
       let newDate = new Date(post.createdAt); // for date formatting
       // check if own post to display delete button
       let isPostOwner = false;
-      if(bearerToken.username == post.username){
+      if (bearerToken.username == post.username) {
         isPostOwner = true;
       }
       displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
     })
   }
-  catch(error) {
+  catch (error) {
     console.log(error);
   }
 }
@@ -176,7 +213,7 @@ darkBtn.onclick = function () {
   darkBtn.classList.toggle("dark-btn-on");
   document.body.classList.toggle("dark-theme");
 
-  if (localStorage.getItem("theme") == "light"){
+  if (localStorage.getItem("theme") == "light") {
     localStorage.setItem("theme", "dark");
   }
   else {

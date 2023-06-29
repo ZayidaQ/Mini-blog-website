@@ -1,6 +1,10 @@
 const settingsMenu = document.querySelector(".settings-menu");
 const darkBtn = document.getElementById("dark-btn")
 
+document.getElementById("myIcon").addEventListener("click", function() {
+  this.classList.toggle("clicked");
+});
+
 function settingsMenuToggle() {
   settingsMenu.classList.toggle("settings-menu-height");
 }
@@ -29,3 +33,4 @@ else if (localStorage.getItem("theme") == "dark") {
 else {
   localStorage.setItem("theme", "light");
 }
+
