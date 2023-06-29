@@ -118,6 +118,7 @@ function displayPost() {
       currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       console.log(currentUserPosts)
       const displayPost = document.querySelector("#recentPost")
+      const displayPost = document.querySelector("#recentPost")
 
       const randomNumber = Math.floor(Math.random() * 150);
       const randomRepost = Math.floor(Math.random() * 40);
@@ -151,11 +152,14 @@ function displayPost() {
                     <div>
                         <img src="../img/main-user.png" alt="" class="post-activity-user-icon">
                     </div>
+                   
+                    
                     <div class="post-activity-link">
                         <i class="fas fa-comment"></i>
                         <span>Comment</span>
                     </div>
                     <div class="post-activity-link">
+                        <i class="fas fa-share" ></i>
                         <i class="fas fa-share" ></i>
                         <span>Share</span>
                     </div>
