@@ -32,6 +32,37 @@ formCreatePost.onsubmit = function(event) {
   createPost();
 }
 
+// Function for user to edit bio
+
+function getbio() {
+  fetch(`https://microbloglite.herokuapp.com/api/users?username=${currentUser}`, {
+    method: "GET", 
+    headers: {
+      "Authorization": `Bearer ${loginData.token}`,
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Error retrieving data from the API");
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Access the 'about' property within the 'user' object
+    const about = data.user.about;
+    
+    // Use the 'about' value as needed
+    console.log(about);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+getbio()
+
+
 
 // Function to display posts from current user 
 function displayPost () {
