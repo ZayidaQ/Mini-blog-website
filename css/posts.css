@@ -348,7 +348,7 @@ nav {
 /* ---------- Main-content ---------- */
 .main-content {
     flex-basis: 47%;
-    max-width: 47%; /*come back to this*/
+    max-width: 47%;
 }
 
 .create-post {
@@ -976,6 +976,7 @@ button.btnDelete {
 
     .main-content {
         flex-basis: 100%;
+        max-width: 100%;
     }
 }
 
