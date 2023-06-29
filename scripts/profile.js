@@ -14,6 +14,9 @@ const bioText = document.querySelector(".bio-text")
 const loginData = getLoginData()
 const currentUser = (loginData).username
 
+const inputBio = document.querySelector("#inputBio");
+const btnEdit = document.querySelector("#btnEdit");
+const btnSave = document.querySelector("#btnSave");
 
 // when page loads
 window.onload = () => {
@@ -25,6 +28,34 @@ window.onload = () => {
 // logout button
 btnLogOut.onclick = () => {
   logout();
+}
+
+btnEdit.onclick = () => {
+  inputBio.style.display = "block";
+  btnSave.style.display = "block";
+  btnEdit.style.display = "none";
+}
+
+btnSave.onclick = () => {
+  inputBio.style.display = "none";
+  btnSave.style.display = "none";
+  btnEdit.style.display = "block";
+
+  fetch(`https://microbloglite.herokuapp.com/api/users/${loginData.username}`, {
+      method: 'PUT',
+      headers: {
+          'accept': 'application/json',
+          'Authorization': `Bearer ${loginData.token}`,
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          'bio': inputBio.value
+      })
+  })
+  .then(response => response.json())
+  .then(data => console.log(data));
+  alert("Your new bio was saved.");
+  location.reload();
 }
 
 // when button is clicked
