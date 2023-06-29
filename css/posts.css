@@ -566,10 +566,16 @@ nav {
 }
 /* ---------- CSS Style for Profile page  ---------- */
 
-.clicked {
+.clicked i {
     color: red;
 }
 
+.btnScrollToTop {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+}
 /* ---------- CSS Style for Profile page  ---------- */
 .profile-container {
     padding: 20px 15%;
@@ -655,3 +661,12 @@ nav {
     flex-basis: 65%;
     margin-right: 15%;
 }
+
+.profile-intro {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.profile-intro h3 
