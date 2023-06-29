@@ -50,7 +50,7 @@ function getbio() {
   })
   .then(data => {
     // Access the 'about' property within the 'user' object
-    const about = data.user.about;
+    const about = data.user.bio;
     
     // Use the 'about' value as needed
     console.log(about);
@@ -114,13 +114,14 @@ function displayPost() {
                     <div>
                         <img src="../img/user-1.JPG" alt="" class="post-activity-user-icon">
                     </div>
-                    ${isLiked}    
+                   
+                    
                     <div class="post-activity-link">
                         <i class="fas fa-comment"></i>
                         <span>Comment</span>
                     </div>
                     <div class="post-activity-link">
-                        <i class="fas fa-share" ${ownPost}></i>
+                        <i class="fas fa-share" ></i>
                         <span>Share</span>
                     </div>
                     <div class="post-activity-link">
@@ -193,7 +194,7 @@ async function onDropdownSort() {
       if (bearerToken.username == post.username) {
         isPostOwner = true;
       }
-      displayAllPosts(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
+      displayPost(post.username, newDate.toLocaleString(), post.text, post.likes.length, isPostOwner, post._id);
     })
   }
   catch (error) {
