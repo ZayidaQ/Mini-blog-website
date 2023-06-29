@@ -411,7 +411,7 @@ nav {
 }
 
 .create-post-links li:last-child {
-    background: #F0D18F;
+    background: var(--nav-color);
     color: #fff;
     border-top: 0;
     border-right: 0;
