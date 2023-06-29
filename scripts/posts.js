@@ -174,7 +174,7 @@ function getRandomInteger(min, max) {
 function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID, _isLiked, _unlikeID) {
       let ownPost = ""; //check if post owner so delete button appears
       if(_ownPost){
-        ownPost = `<button type="button" class="btn btn-danger float-end btnDelete" id="${_valueID}"><i class="bi bi-trash-fill"></i></button>`;
+        ownPost = `<button class="btnDelete" id="${_valueID}"><i class="fas fa-trash trash" style="color: #df4e4e;"></i></button>`;
       }
       else{
         ownPost = "";
@@ -208,7 +208,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID,
                         <small>${_date} </small>
                     </div>
                 </div>
-                <i class="fas fa-trash trash" style="color: #df4e4e;"></i>
+                ${ownPost}
                 <p>
                 ${_text}
                 </p>
