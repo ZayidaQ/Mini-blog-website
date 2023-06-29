@@ -6,9 +6,10 @@
 const btnLogOut = document.querySelector("#btnLogOut");
 const formCreatePost = document.querySelector("#formCreatePost");
 const bearerToken = getLoginData();
-const displayPosts = document.querySelector("#displayPosts");
+const displayPosts = document.querySelector("#recentPost");
 const dropdownSortPosts = document.querySelector("#dropdownSortPosts");
 const allBtnDelete = document.getElementsByClassName("btnDelete");
+const bioText = document.querySelector(".bio-text")
 //specific user variables
 const loginData = getLoginData()
 const currentUser = (loginData).username
@@ -32,10 +33,12 @@ formCreatePost.onsubmit = function (event) {
   createPost();
 }
 
-// Function for user to edit bio
+// Function for displaying the bio
 
 function getbio() {
-  fetch(`https://microbloglite.herokuapp.com/api/users?username=${currentUser}`, {
+  const loginData = getLoginData()
+const currentUser = (loginData).username
+  fetch(`https://microbloglite.herokuapp.com/api/users/${currentUser}`, {
     method: "GET", 
     headers: {
       "Authorization": `Bearer ${loginData.token}`,
@@ -50,10 +53,11 @@ function getbio() {
   })
   .then(data => {
     // Access the 'about' property within the 'user' object
-    const about = data.user.bio;
-    
+    const about = data.bio;
+    //To display bio on website
+    bioText.innerHTML = about
     // Use the 'about' value as needed
-    console.log(about);
+    console.log (about);
   })
   .catch(error => {
     console.error(error);
@@ -61,6 +65,38 @@ function getbio() {
 }
 
 getbio()
+
+function updateBio() {
+  const loginData = getLoginData()
+const currentUser = (loginData).username
+  fetch(`https://microbloglite.herokuapp.com/api/users/${currentUser}`, {
+    method: "PUT", 
+    headers: {
+      "Authorization": `Bearer ${loginData.token}`,
+      "Content-type": "application/json; charset=UTF-8"
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("Error retrieving data from the API");
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Access the 'about' property within the 'user' object
+    const about = data.bio;
+    //To display bio on website
+    bioText.innerHTML = about
+    // Use the 'about' value as needed
+    console.log (about);
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
+getbio()
+}
 
 
 
