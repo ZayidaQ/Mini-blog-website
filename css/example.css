@@ -595,3 +595,14 @@ nav {
     right: 10px;
     display: none;
 }
+
+
+/* ----- Media query ----- */
+@media (max-width: 900px) {
+    .right-sidebar {
+        display: none;
+    }
+    .left-sidebar {
+        display: none;
+    }
+}

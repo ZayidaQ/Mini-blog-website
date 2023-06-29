@@ -127,9 +127,57 @@
         <div class="info-col">
             <div class="profile-intro">
                 <h3>Bio </h3>
-                <p>I think we still need to do the delete button. The functionality is done for it, just need HTML for
-                    it in the new version of the post page </p>
+                <p class="bio-text">
+                    I think we still need to do the delete button. The functionality is done for it, just need HTML for
+                    it in the new version of the post page 😊
+                </p>
+                <hr>
+                <ul>
+                    <li><i class="fas fa-user-graduate"></i>Student at YearUp</li>
+                    <li><i class="fas fa-user-graduate"></i>PLace holder</li>
+                    <li><i class="fas fa-user-graduate"></i>PLace holder</li>
+                    <li><i class="fas fa-user-graduate"></i>PLace holder</li>
+                    <li><i class="fas fa-user-graduate"></i>PLace holder</li>
+                </ul>
             </div>
+
+            <div class="profile-intro">
+                <div class="title-box">
+                    <h3>Photos</h3>
+                    <a href="#">All Photos</a>
+                </div>
+                
+                <div class="photo-box">
+                    <!-- chnage the photots later -->
+                    <div><img src="../img/michael.jpg" alt=""></div>
+                    <div><img src="../img/michael.jpg" alt=""></div>
+                    <div><img src="../img/michael.jpg" alt=""></div>
+                    <div><img src="../img/michael.jpg" alt=""></div>
+                    <div><img src="../img/michael.jpg" alt=""></div>
+                    <div><img src="../img/michael.jpg" alt=""></div>
+                </div>
+            </div>
+
+            <div class="profile-intro">
+                <div class="title-box">
+                    <h3>Users you might know</h3>
+                    <a href="#">View all</a>
+                </div>
+                <p>#YearUp </p>
+                <div class="friends-box">
+                    <!-- chnage the photots later -->
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                    <div><img src="../img/shortcut-1.png" alt=""> <p>Jonathan</p></div>
+                </div>
+            </div>
+
         </div>
         <div class="post-col">
             <form id="formCreatePost">
@@ -155,7 +203,8 @@
                 </select>
             </div>
 
-            <div class="display-container" id="displayPosts"></div>
+            <div class="display-container" id="recentPost"></div>
+
             <button type="button" class="btnScrollToTop"
                 onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Up</button>
         </div>
@@ -168,7 +217,7 @@
     </div>
 
 
-    <script src="../scripts/posts.js"></script>
+    <script src="/scripts/profile.js"></script>
     <script src="../scripts/ToggleMenu.js"></script>
 </body>
 
