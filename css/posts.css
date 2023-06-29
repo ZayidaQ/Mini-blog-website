@@ -39,6 +39,7 @@
 body {
     background: var(--body-color);
     transition: background 0.3s;
+    min-height: 100vh;  
 }
 
 html {
@@ -347,6 +348,7 @@ nav {
 /* ---------- Main-content ---------- */
 .main-content {
     flex-basis: 47%;
+    max-width: 47%;
 }
 
 .create-post {
@@ -974,6 +976,7 @@ button.btnDelete {
 
     .main-content {
         flex-basis: 100%;
+        max-width: 100%;
     }
 }
 
