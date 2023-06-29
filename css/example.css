@@ -569,6 +569,10 @@ nav {
     background: #121212;
 }
 
+.clicked i {
+    color: red; /* Change the color to your desired value */
+}
+
 .btnScrollToTop {
     position: fixed;
     bottom: 10px;
