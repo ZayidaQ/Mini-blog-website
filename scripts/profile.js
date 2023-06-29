@@ -97,40 +97,6 @@ const currentUser = (loginData).username
 
 getbio()
 
-//function updateBio() {
-//   const loginData = getLoginData()
-// const currentUser = (loginData).username
-//   fetch(`https://microbloglite.herokuapp.com/api/users/${currentUser}`, {
-//     method: "PUT", 
-//     headers: {
-//       "Authorization": `Bearer ${loginData.token}`,
-//       "Content-type": "application/json; charset=UTF-8"
-//     }
-// body: JSON.stringify({
-//   'bio': 'hello',
-// })
-//   })
-//   .then(response => {
-//     if (!response.ok) {
-//       throw new Error("Error retrieving data from the API");
-//     }
-//     return response.json();
-//   })
-//   .then(data => {
-//     // Access the 'about' property within the 'user' object
-//     const about = data.bio;
-//     //To display bio on website
-//     bioText.innerHTML = about
-//     // Use the 'about' value as needed
-//     console.log (about);
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
-// }
-
-
-
 
 // Function to display posts from current user 
 function displayPost() {
