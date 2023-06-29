@@ -305,6 +305,40 @@ nav {
     top: unset;
     bottom: 5px;
 }
+/*----- drop down -----*/
+.dropdown-container {
+    position: relative;
+    width: 200px; /* Adjust the width as per your needs */
+    margin: 20px; /* Adjust the margin as per your needs */
+  }
+  
+  .form-select {
+    text-align: right;
+    width: 100%;
+    height: 30px; /* Adjust the height as per your needs */
+    appearance: none;
+    border: none;
+    outline: none;
+    background-color: transparent; /* Adjust the background color as per your needs */
+    padding: 5px 10px; /* Adjust the padding as per your needs */
+    font-size: 14px; /* Adjust the font size as per your needs */
+    border-radius: 4px; /* Adjust the border radius as per your needs */
+  }
+  
+  /* Custom arrow icon */
+  .form-select::after {
+    content: "\25BC";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 12px; /* Adjust the font size as per your needs */
+    pointer-events: none;
+    color: #888; /* Adjust the arrow color as per your needs */
+  }
+  
+  
+
 
 /* ---------- Main-content ---------- */
 .main-content {
@@ -421,6 +455,7 @@ nav {
     position: absolute;
     top: 30px;
     right: 30px;
+    cursor: pointer;
 }
 
 .post-stats {
