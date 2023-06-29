@@ -875,6 +875,12 @@ nav {
     opacity: 1;
 }
 
+/*----- del - button ----- */
+button.btnDelete {
+    border: none;
+    background-color: transparent;
+}
+
 /* ----- Scroll to Top button ----- */
 .btnScrollToTop {
     position: fixed;
