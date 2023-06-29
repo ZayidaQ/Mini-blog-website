@@ -229,7 +229,7 @@ function displayAllPosts(_username, _date, _text, _numLikes, _ownPost, _valueID,
                         <span>Comment</span>
                     </div>
                     <div class="post-activity-link">
-                        <i class="fas fa-share" ${ownPost}></i>
+                        <i class="fas fa-share"></i>
                         <span>Share</span>
                     </div>
                     <div class="post-activity-link">
