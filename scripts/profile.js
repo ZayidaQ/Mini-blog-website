@@ -31,6 +31,7 @@ btnLogOut.onclick = () => {
   logout();
 }
 
+//Displaying bio 
 btnEdit.onclick = () => {
   inputBio.style.display = "block";
   btnSave.style.display = "inline-block";
@@ -65,7 +66,7 @@ formCreatePost.onsubmit = function (event) {
   createPost();
 }
 
-// Function for displaying the bio
+// Function for getting the bio
 
 function getbio() {
   const loginData = getLoginData()
