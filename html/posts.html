@@ -19,7 +19,7 @@
     <!-- Run BEFORE page is finished loading (before window.onload - don't add the `defer` attribute): -->
     <script src="/scripts/auth.js"></script>
     <script>
-        if (isLoggedIn() === false) window.location.replace("/html/index.html");
+        if (isLoggedIn() === false) window.location.replace("/html");
     </script>
 </head>
 
@@ -54,7 +54,7 @@
                     <img src="../img/user-1.JPG" alt="">
                     <div>
                         <p> Zayida </p>
-                        <a href="example.html">See your profile</a>
+                        <a href="../html/profile.html">See your profile</a>
                     </div>
                 </div>
                 <hr>
@@ -156,7 +156,6 @@
             </div>
             
             <div class="display-container" id="displayPosts"></div>
-            <button type="button" class="btnScrollToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Up</button>
             
         </div>
 
@@ -237,6 +236,9 @@
         </div>
     </div>
 
+    <!-- Scroll to the top button -->
+    <button type="button" class="btnScrollToTop" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">Up</button>
+
     <div class="footer">
         <p> Copyright 2023 - BusyBees </p>
     </div>
@@ -244,7 +246,6 @@
 
     <div id="loading"></div>
     <script src="../scripts/posts.js"></script>
-    <script src="../scripts/ToggleMenu.js"></script>
 </body>
 
 </html>
