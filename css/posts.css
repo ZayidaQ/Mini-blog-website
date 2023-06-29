@@ -26,11 +26,11 @@
 .dark-theme {
     --body-color: #1e1f22;
     --nav-color: #EEBC27;
-    --bg-color: #41434a;
+    --bg-color: #3c3c3d;
     --text-color: #FAF6EE;
     --text-body-color: #313134;
     --right-event: #1e1e1e;
-    --right-sidebar: #41434a;
+    --right-sidebar: #3c3c3d;
     --settings-menu: #2c2c2c;
 }
 
